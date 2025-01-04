@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+a.active {
+    color: #84cc16 !important;
+    background-color: #134e4a !important;
+}
+
+a:focus {
+    color: #14b8a6 !important;
+    background-color: #134e4a !important;
+}
