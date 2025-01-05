@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 function MainLayout() {
 
     return <>
-        <div className="bg-emerald-950">
+        <div className="bg-emerald-950 text-white">
             <Nav />
             <Outlet />
             <Footer />
