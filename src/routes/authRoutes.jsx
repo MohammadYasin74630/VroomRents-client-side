@@ -2,12 +2,6 @@ import ForgotPassword from "../pages/Forgot-Password/ForgotPassword";
 import MyAccount from "../pages/Login-Register/MyAccount";
 import UpdateProfile from "../pages/Update-Profile/UpdateProfile";
 
-const register = async ({ request }) => {
-    const formData = await request.formData()
-    console.log(console.log(Object.fromEntries(formData)))
-    return {result : 'abc'}
-}
-
 export const authRoutes = [
     {
         path: "/my-account",
@@ -15,12 +9,10 @@ export const authRoutes = [
     },
     {
         path: "/update-account",
-        element: <UpdateProfile/>,
-        action: register
+        element: <UpdateProfile/>
     },
     {
         path: "/forgot-password",
-        element: <ForgotPassword/>,
-        action: register
+        element: <ForgotPassword/>
     }
 ]
