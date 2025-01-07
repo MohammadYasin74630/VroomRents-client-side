@@ -17,7 +17,7 @@ function Register({ inputRef }) {
     const [btnLoading, setBtnLoading] = useState(false)
     const [googleLoading, setGoogleLoading] = useState(false)
     const navigate = useNavigate()
-    const { register, updateUserInfo, googleLogin, logout, setUser } = useContext(authContext)
+    const { register, updateUserInfo, googleLogin, logout, setUser, setRemember } = useContext(authContext)
 
     const success = (msg) => toast.success(msg, { position: "top-right" });
     const error = (msg) => toast.error(msg, { position: "top-right" });
@@ -144,6 +144,8 @@ function Register({ inputRef }) {
                                         logout()
                                             .then(() => inputRef.current.checked = true)
                                             .catch(err => error(err))
+
+                                        e.target.reset()
                                         return success("account created, plz login now")
                                     }
                                 })
@@ -175,7 +177,7 @@ function Register({ inputRef }) {
         }
     }
 
-    const handleGoogleLogin = () => {
+    const handleGoogleLogin = (e) => {
 
         setGoogleLoading(true)
 
@@ -202,7 +204,14 @@ function Register({ inputRef }) {
 
                         if (val.data.message || val.data.acknowledged) {
 
+                            if (!localStorage.getItem("remember")) {
+
+                                setRemember(true)
+                                localStorage.setItem("remember", true)
+                            }
+
                             success("login successfull")
+                            e.target.form.reset()
                             return navigate("/")
                         }
                     })
@@ -226,7 +235,7 @@ function Register({ inputRef }) {
         <>
             <form onSubmit={handleSubmit} noValidate method="post">
 
-                <fieldset className="space-y-4 p-2 md:p-4" disabled={btnLoading || googleLoading}>
+                <fieldset className="space-y-4 p-2 md:p-4 " disabled={btnLoading || googleLoading}>
                     <p className="flex items-center justify-center gap-2 text-3xl font-extrabold pb-4 text-center">Create an Account</p>
 
                     <label className="input input-bordered flex items-center gap-3 bg-teal-600 focus-within:outline-teal-500/50">
@@ -289,7 +298,7 @@ function Register({ inputRef }) {
                         <input className="hidden" type="radio" name="role" value="vendor" />
                     </label>
 
-                    <button className="flex items-center justify-center gap-2 bg-teal-500 w-full p-3 rounded-lg font-bold  hover:bg-teal-500/80 btn btn-ghost [--bc:red]" type="submit" disabled={btnLoading}>
+                    <button className="flex items-center justify-center gap-2 bg-teal-500 w-full p-3 rounded-lg font-bold  hover:bg-teal-500/80 btn btn-ghost [--bc:red]" type="submit">
                         {
                             btnLoading ? <LoadingSpinner /> : <>
                                 REGISTER

@@ -6,10 +6,13 @@ import { Form, Link, useSubmit } from "react-router-dom";
 import toast from 'react-hot-toast';
 import userImg from "../../assets/user.jpeg"
 import axios from "axios";
+import { useContext } from "react";
+import { authContext } from "../../utils/AuthProvider";
 
 function UpdateProfile() {
 
     const submit = useSubmit()
+    const { setRemember } = useContext(authContext)
     const error = (msg) => toast.error(msg, { position: "top-right" });
 
     const handleSubmit = async (e) => {
@@ -77,6 +80,23 @@ function UpdateProfile() {
         }
     }
 
+    const changeHandler = (e) => {
+        if (e.target.checked) {
+
+            if (!localStorage.getItem("remember")) {
+                setRemember(true)
+                localStorage.setItem("remember", true)
+            }
+        }
+        else {
+
+            if (localStorage.getItem("remember")) {
+                setRemember(false)
+                localStorage.removeItem("remember")
+            }
+        }
+    }
+
     return (
         <>
             <Form className="space-y-4 max-w-[600px] mx-4 md:mx-auto my-20 p-4 md:p-10 bg-teal-900 border-emerald-800 rounded-box" onSubmit={handleSubmit} noValidate method="post">
@@ -117,7 +137,13 @@ function UpdateProfile() {
                     <FaCircleArrowRight />
                 </button>
 
-                <Link className="hover:text-teal-400 text-sm block text-center" to="/forgot-password">Forgot password ?</Link>
+                <div className="flex items-center justify-between text-sm select-none">
+                    <label className="inline-flex items-center gap-1 cursor-pointer" onChange={changeHandler}>
+                        <input type="checkbox" defaultChecked={localStorage.getItem("remember") === "true"} className="[--chkbg:#14b8a6] border-teal-500 checkbox mr-1 scale-90" />
+                        Remember me
+                    </label>
+                    <Link className="hover:text-teal-400" to="/forgot-password">Forgot password ?</Link>
+                </div>
 
             </Form>
         </>

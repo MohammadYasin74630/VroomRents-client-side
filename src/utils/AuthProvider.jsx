@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react"
 import auth from "./firebase.config";
-import { createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { browserLocalPersistence, browserSessionPersistence, createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, setPersistence, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 
 export const authContext = createContext(null)
@@ -9,6 +9,7 @@ function AuthProvider({ children }) {
 
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [remember, setRemember] = useState(localStorage.getItem("remember") === "true");
     const googleProvider = new GoogleAuthProvider();
 
     const register = (email, password) => {
@@ -44,26 +45,36 @@ function AuthProvider({ children }) {
         return signOut(auth);
     }
 
-    useEffect(
-        () => {
-            const unsubscribe = onAuthStateChanged(auth, (user) => {
+    useEffect(() => {
 
-                if (user) {
-                    setUser(user);
-                } else {
-                    setUser(null);
-                }
+        const persistenceMode = remember ? browserLocalPersistence : browserSessionPersistence;
 
-                if (loading) { setLoading(false) }
+        setPersistence(auth, persistenceMode)
+            .then(() => {
+
+                const unsubscribe = onAuthStateChanged(auth, (user) => {
+
+                    if (user) {
+                        setUser(user);
+                    } else {
+                        setUser(null);
+                    }
+
+                    if (loading) { setLoading(false) }
+                });
+
+                return unsubscribe
+            })
+            .catch((error) => {
+                console.error("Error setting session persistence:", error);
             });
-
-            return unsubscribe
-        }, []
-    )
+    }, [remember]);
 
     const authInfo = {
         user,
         loading,
+        remember,
+        setRemember,
         setUser,
         register,
         login,
