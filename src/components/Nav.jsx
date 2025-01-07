@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom"
+import { Link, NavLink, useNavigate } from "react-router-dom"
 import { FaRegUser } from "react-icons/fa";
 import { FaRegUserCircle } from "react-icons/fa";
 import { IoLogOutOutline } from "react-icons/io5";
@@ -7,8 +7,18 @@ import { BiSolidCarMechanic } from "react-icons/bi";
 import { TbBrandBooking } from "react-icons/tb";
 import { MdOutlineCarRental } from "react-icons/md";
 import logo from "../assets/car logo (3).webp"
+import { useContext } from "react";
+import { authContext } from "../utils/AuthProvider";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 function Nav() {
+
+    const { user, logout } = useContext(authContext)
+    const navigate = useNavigate()
+
+    const success = (msg) => toast.success(msg, { position: "top-right" });
+    const error = (msg) => toast.error(msg, { position: "top-right" });
 
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
@@ -20,7 +30,7 @@ function Nav() {
 
     return (
         <>
-            <div className="drawer sticky top-0">
+            <div className="drawer sticky top-0 shadow-sm shadow-teal-900 bg-teal-900 z-10 md:px-10">
                 <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col">
                     {/* Navbar */}
@@ -48,60 +58,78 @@ function Nav() {
                                 {links}
                             </ul>
                         </div>
-                        <div className="navbar-end relative">
+                        <div className="navbar-end relative ">
 
-                            <div className="group" tabIndex={0}>
-                                <div className="avatar placeholder cursor-pointer">
-                                    <div className="bg-emerald-800 text-white w-12 rounded-full">
-                                        <FaRegUser />
-                                    </div>
-                                </div>
-
-                                <div className="text-white absolute top-14 right-0 rounded-xl border border-teal-900 overflow-hidden group-focus-within:visible invisible" tabIndex={0}>
-
-                                    <div className="flex items-center gap-2 py-3 px-4 -mb-4">
-                                        <div className="bg-emerald-800 text-white w-12 h-12 rounded-full inline-flex items-center justify-center">
-                                            <span>SY</span>
-                                        </div>
-
-                                        <div className="text-sm">
-                                            <p>Mohammad yasin</p>
-                                            <p className="text-teal-500">Seller</p>
+                            {
+                                user ? <div className="group" tabIndex={0}>
+                                    <div className="avatar placeholder cursor-pointer">
+                                        <div className="bg-emerald-800 text-white w-12 rounded-full">
+                                            <FaRegUser />
                                         </div>
                                     </div>
 
-                                    <div className="divider before:bg-teal-900 after:bg-teal-900 "></div>
+                                    <div className="text-white absolute top-14 right-0 rounded-xl border border-teal-900 overflow-hidden group-focus-within:visible invisible" tabIndex={0}>
 
-                                    <NavLink
-                                        className="pt-3 pb-2 px-4 flex items-center gap-2 hover:bg-emerald-800 -mt-6"
-                                        to="/profile">
-                                        <FaRegUserCircle className="text-2xl text-teal-500" /> Profile
-                                    </NavLink>
-                                    <NavLink
-                                        className="py-2 px-4 flex items-center gap-2 hover:bg-emerald-800"
-                                        to="/add-cars">
-                                        <IoCarSportOutline className="text-2xl text-teal-500" /> Add cars
-                                    </NavLink>
-                                    <NavLink
-                                        className="py-2 px-4 flex items-center gap-2 hover:bg-emerald-800"
-                                        to="/my-cars">
-                                        <BiSolidCarMechanic className="text-2xl text-teal-500" /> My cars
-                                    </NavLink>
-                                    <NavLink
-                                        className="py-2 px-4 flex items-center gap-2 hover:bg-emerald-800"
-                                        to="/my-bookings">
-                                        <TbBrandBooking className="text-2xl text-teal-500" /> My bookings
-                                    </NavLink>
-                                    <NavLink
-                                        className="py-2 px-4 flex items-center gap-2 hover:bg-emerald-800"
-                                        to="/my-rentals">
-                                        <MdOutlineCarRental className="text-3xl -ml-1 text-teal-500" /> My rentals
-                                    </NavLink>
-                                    <Link className="py-2 px-4 flex items-center gap-2 hover:bg-emerald-800">
-                                        <IoLogOutOutline className="text-2xl text-teal-500" /> Logout
-                                    </Link>
-                                </div>
-                            </div>
+                                        <div className="flex items-center gap-2 py-3 px-4 -mb-4">
+                                            <div className="bg-emerald-800 text-white w-12 h-12 rounded-full inline-flex items-center justify-center">
+                                                <span>SY</span>
+                                            </div>
+
+                                            <div className="text-sm">
+                                                <p>Mohammad yasin</p>
+                                                <p className="text-teal-500">Seller</p>
+                                            </div>
+                                        </div>
+
+                                        <div className="divider before:bg-teal-900 after:bg-teal-900 "></div>
+
+                                        <NavLink
+                                            className="pt-3 pb-2 px-4 flex items-center gap-2 hover:bg-emerald-800 -mt-6"
+                                            to="/profile">
+                                            <FaRegUserCircle className="text-2xl text-teal-500" /> Profile
+                                        </NavLink>
+                                        <NavLink
+                                            className="py-2 px-4 flex items-center gap-2 hover:bg-emerald-800"
+                                            to="/add-cars">
+                                            <IoCarSportOutline className="text-2xl text-teal-500" /> Add cars
+                                        </NavLink>
+                                        <NavLink
+                                            className="py-2 px-4 flex items-center gap-2 hover:bg-emerald-800"
+                                            to="/my-cars">
+                                            <BiSolidCarMechanic className="text-2xl text-teal-500" /> My cars
+                                        </NavLink>
+                                        <NavLink
+                                            className="py-2 px-4 flex items-center gap-2 hover:bg-emerald-800"
+                                            to="/my-bookings">
+                                            <TbBrandBooking className="text-2xl text-teal-500" /> My bookings
+                                        </NavLink>
+                                        <NavLink
+                                            className="py-2 px-4 flex items-center gap-2 hover:bg-emerald-800"
+                                            to="/my-rentals">
+                                            <MdOutlineCarRental className="text-3xl -ml-1 text-teal-500" /> My rentals
+                                        </NavLink>
+                                        <button className="py-2 px-4 w-full flex items-center gap-2 hover:bg-emerald-800" onClick={
+                                            () => {
+                                                logout()
+                                                    .then(() => {
+
+                                                        axios.delete("http://localhost:3000/jwt")
+                                                            .then(() => {
+                                                                success("logout successfully")
+                                                                navigate("/")
+                                                            })
+                                                    })
+                                                    .catch(err => error(err))
+                                            }
+                                        }>
+                                            <IoLogOutOutline className="text-2xl text-teal-500" /> Logout
+                                        </button>
+                                    </div>
+                                </div> : <NavLink
+                                    className="py-2 px-3 rounded-lg text-sm hover:bg-base-content/10"
+                                    to="/my-account"> Login & Register
+                                </NavLink>
+                            }
                         </div>
                     </div>
                 </div>

@@ -13,26 +13,12 @@ function AuthProvider({ children }) {
 
     const register = (email, password) => {
 
-        return createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed up 
-                const user = userCredential.user;
-                console.log(user)
-            })
-            .catch((error) => {
-                console.log(error.message)
-            });
+        return createUserWithEmailAndPassword(auth, email, password);
     }
 
     const login = (email, password) => {
 
-        return signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                console.log(userCredential.user)
-            })
-            .catch((error) => {
-                console.log(error.message)
-            });
+        return signInWithEmailAndPassword(auth, email, password);
     }
 
     const updateUserInfo = (name, image) => {
@@ -40,41 +26,22 @@ function AuthProvider({ children }) {
         return updateProfile(auth.currentUser, {
             displayName: name,
             photoURL: image
-        }).then((abc) => {
-            console.log("updated user infor", abc)
-        }).catch((error) => {
-            console.log(error.message)
         });
     }
 
     const forgotPassword = (email) => {
 
-        return sendPasswordResetEmail(auth, email)
-            .then((abc) => {
-                console.log("email sent ", abc)
-            })
-            .catch((error) => {
-                console.log(error.message)
-            });
+        return sendPasswordResetEmail(auth, email);
     }
 
     const googleLogin = () => {
 
-        return signInWithPopup(auth, googleProvider)
-            .then((result) => {
-                console.log(result)
-            }).catch((error) => {
-                console.log(error.message)
-            });
+        return signInWithPopup(auth, googleProvider);
     }
 
     const logout = () => {
 
-        return signOut(auth).then((abc) => {
-            console.log("logout successfull", abc)
-        }).catch((error) => {
-            console.log(error.message)
-        });
+        return signOut(auth);
     }
 
     useEffect(
@@ -87,10 +54,10 @@ function AuthProvider({ children }) {
                     setUser(null);
                 }
 
-                setLoading(false)
+                if (loading) { setLoading(false) }
             });
 
-            return () => unsubscribe()
+            return unsubscribe
         }, []
     )
 

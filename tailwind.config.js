@@ -1,4 +1,5 @@
 import daisyui from "daisyui"
+import { light } from "daisyui/src/theming/themes"
 
 /** @type {import('tailwindcss').Config} */
 
@@ -13,5 +14,19 @@ export default {
   plugins: [
     daisyui,
   ],
+  daisyui: {
+    themes: [
+      {
+        light: {
+          ...light,
+          ".tab": {
+            color: "white",
+            "--tab-border-color": "#065f46",
+            "--tab-bg": "#134e4a"
+          }
+        },
+      },
+    ],
+  }
 }
 
