@@ -7,15 +7,16 @@ import { FcGoogle } from "react-icons/fc";
 import { useContext, useState } from "react";
 import toast from 'react-hot-toast';
 import { authContext } from "../../utils/AuthProvider";
-import axios from "axios";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { useNavigate } from "react-router-dom";
+import useAxios from "../../hook/useAxios";
 
 function Register({ inputRef }) {
 
     const [passwordShown, setPasswordShown] = useState(false)
     const [btnLoading, setBtnLoading] = useState(false)
     const [googleLoading, setGoogleLoading] = useState(false)
+    const myAxios = useAxios()
     const navigate = useNavigate()
     const { register, updateUserInfo, googleLogin, logout, setUser, setRemember } = useContext(authContext)
 
@@ -112,7 +113,7 @@ function Register({ inputRef }) {
 
             setBtnLoading(true)
 
-            axios.postForm(
+            myAxios.postForm(
                 `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_ImgbbAPI}`,
                 { image: image.files[0] }
             )
@@ -132,7 +133,7 @@ function Register({ inputRef }) {
                             formObj.name = name.value
                             formObj.image = data.data.data.display_url
 
-                            axios.post("http://localhost:3000/user", formObj)
+                            myAxios.post("/user", formObj)
                                 .then(val => {
                                     setBtnLoading(false)
 
@@ -194,7 +195,7 @@ function Register({ inputRef }) {
                     "lastLoggedIn": userInfo.user.metadata.lastLoginAt
                 }
 
-                axios.post("http://localhost:3000/user", formObj)
+                myAxios.post("/user", formObj)
                     .then(val => {
                         setGoogleLoading(false)
 

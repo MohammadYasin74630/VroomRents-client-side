@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react"
 import auth from "./firebase.config";
 import { browserLocalPersistence, browserSessionPersistence, createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, setPersistence, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
+import Cookies from 'js-cookie';
 
 export const authContext = createContext(null)
 
@@ -10,6 +11,8 @@ function AuthProvider({ children }) {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
     const [remember, setRemember] = useState(localStorage.getItem("remember") === "true");
+    const [role, setRole] = useState(Cookies.get("role"));
+    
     const googleProvider = new GoogleAuthProvider();
 
     const register = (email, password) => {
@@ -74,6 +77,8 @@ function AuthProvider({ children }) {
         user,
         loading,
         remember,
+        role,
+        setRole,
         setRemember,
         setUser,
         register,

@@ -71,7 +71,7 @@ function ForgotPassword() {
                             <path
                                 d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
                         </svg>
-                        <input type="email" name="email" className="grow placeholder:text-white" placeholder="Email" defaultValue={user && user?.email} />
+                        <input type="email" name="email" className="grow w-full placeholder:text-white" placeholder="Email" defaultValue={user && user?.email} />
                     </label>
 
                     <button className="flex items-center justify-center gap-2 bg-teal-500 w-full p-3 rounded-lg font-bold  hover:bg-teal-500/80 btn btn-ghost [--bc:red]" type="submit">

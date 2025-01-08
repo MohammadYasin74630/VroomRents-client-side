@@ -4,15 +4,16 @@ import { FcGoogle } from "react-icons/fc";
 import { Form, Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import toast from 'react-hot-toast';
-import axios from "axios";
 import { authContext } from "../../utils/AuthProvider";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import useAxios from "../../hook/useAxios";
 
 function Login() {
 
     const [passwordShown, setPasswordShown] = useState(false)
     const [btnLoading, setBtnLoading] = useState(false)
     const [googleLoading, setGoogleLoading] = useState(false)
+    const myAxios = useAxios();
     const navigate = useNavigate()
     const { login, googleLogin, setUser, setRemember } = useContext(authContext)
 
@@ -68,13 +69,12 @@ function Login() {
 
             setBtnLoading(true)
 
-
             login(email.value, password.value)
                 .then((userInfo) => {
 
                     setUser(userInfo.user)
 
-                    axios.get(`http://localhost:3000/user/${email.value}`, formObj)
+                    myAxios.get(`/user/${email.value}`, formObj)
                         .then(val => {
 
                             setBtnLoading(false)
@@ -125,7 +125,9 @@ function Login() {
                     "lastLoggedIn": userInfo.user.metadata.lastLoginAt
                 }
 
-                axios.post("http://localhost:3000/user", formObj)
+                myAxios.post("/user", formObj, {
+                    withCredentials: true
+                })
                     .then(val => {
                         setGoogleLoading(false)
 
@@ -147,7 +149,8 @@ function Login() {
                     })
                     .catch(err => {
                         setGoogleLoading(false)
-                        return error(err.message)
+                        // return error(err.message)
+                        return console.log(err)
                     })
 
             })

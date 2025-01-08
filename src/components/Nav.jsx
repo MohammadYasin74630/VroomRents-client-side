@@ -10,11 +10,13 @@ import logo from "../assets/car logo (3).webp"
 import { useContext } from "react";
 import { authContext } from "../utils/AuthProvider";
 import toast from "react-hot-toast";
-import axios from "axios";
+import useAxios from "../hook/useAxios";
+import Cookies from 'js-cookie';
 
 function Nav() {
 
     const { user, logout } = useContext(authContext)
+    const myAxios = useAxios()
     const navigate = useNavigate()
 
     const success = (msg) => toast.success(msg, { position: "top-right" });
@@ -34,7 +36,7 @@ function Nav() {
                 <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col">
                     {/* Navbar */}
-                    <div className="navbar ">
+                    <div className="navbar">
                         <div className="navbar-start">
                             <div className="flex-none lg:hidden">
                                 <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
@@ -51,7 +53,7 @@ function Nav() {
                                     </svg>
                                 </label>
                             </div>
-                            <Link className="btn btn-ghost text-xl" to="/">VroomRents</Link>
+                            <Link className="btn btn-ghost text-xl -ml-1" to="/">VroomRents</Link>
                         </div>
                         <div className="navbar-center hidden lg:flex">
                             <ul className="menu menu-horizontal px-1">
@@ -68,16 +70,20 @@ function Nav() {
                                         </div>
                                     </div>
 
-                                    <div className="text-white absolute top-14 right-0 rounded-xl border border-teal-900 overflow-hidden group-focus-within:visible invisible" tabIndex={0}>
+                                    <div className="text-white absolute top-14 right-0 rounded-xl border border-emerald-950 min-w-52 max-w-96 text-wrap overflow-hidden group-focus-within:visible invisible bg-emerald-900" tabIndex={0}>
 
                                         <div className="flex items-center gap-2 py-3 px-4 -mb-4">
-                                            <div className="bg-emerald-800 text-white w-12 h-12 rounded-full inline-flex items-center justify-center">
-                                                <span>SY</span>
+                                            <div className="bg-emerald-800 text-white w-12 h-12 rounded-full inline-flex items-center justify-center overflow-hidden">
+
+                                                {
+                                                    user?.photoURL ? <img className="h-full w-full object-cover" src={user?.photoURL} alt="" /> : <span>{user?.displayName?.[0].toUpperCase() || "A"}</span>
+                                                }
+
                                             </div>
 
-                                            <div className="text-sm">
-                                                <p>Mohammad yasin</p>
-                                                <p className="text-teal-500">Seller</p>
+                                            <div className="text-sm w-9/12">
+                                                <p className="line-clamp-1">{user?.displayName || "Anonymous"}</p>
+                                                <p className="text-teal-500">{Cookies.get('role') === "vendor" ? "Seller" : "Buyer"}</p>
                                             </div>
                                         </div>
 
@@ -85,35 +91,39 @@ function Nav() {
 
                                         <NavLink
                                             className="pt-3 pb-2 px-4 flex items-center gap-2 hover:bg-emerald-800 -mt-6"
-                                            to="/profile">
+                                            to="/update-account">
                                             <FaRegUserCircle className="text-2xl text-teal-500" /> Profile
                                         </NavLink>
-                                        <NavLink
-                                            className="py-2 px-4 flex items-center gap-2 hover:bg-emerald-800"
-                                            to="/add-cars">
-                                            <IoCarSportOutline className="text-2xl text-teal-500" /> Add cars
-                                        </NavLink>
-                                        <NavLink
-                                            className="py-2 px-4 flex items-center gap-2 hover:bg-emerald-800"
-                                            to="/my-cars">
-                                            <BiSolidCarMechanic className="text-2xl text-teal-500" /> My cars
-                                        </NavLink>
-                                        <NavLink
-                                            className="py-2 px-4 flex items-center gap-2 hover:bg-emerald-800"
-                                            to="/my-bookings">
-                                            <TbBrandBooking className="text-2xl text-teal-500" /> My bookings
-                                        </NavLink>
-                                        <NavLink
-                                            className="py-2 px-4 flex items-center gap-2 hover:bg-emerald-800"
-                                            to="/my-rentals">
-                                            <MdOutlineCarRental className="text-3xl -ml-1 text-teal-500" /> My rentals
-                                        </NavLink>
-                                        <button className="py-2 px-4 w-full flex items-center gap-2 hover:bg-emerald-800" onClick={
+                                        {
+                                            Cookies.get("role") === "vendor" ? <>
+                                                <NavLink
+                                                    className="py-2 px-4 flex items-center gap-2 hover:bg-emerald-800"
+                                                    to="/add-cars">
+                                                    <IoCarSportOutline className="text-2xl text-teal-500" /> Add cars
+                                                </NavLink>
+                                                <NavLink
+                                                    className="py-2 px-4 flex items-center gap-2 hover:bg-emerald-800"
+                                                    to="/my-cars">
+                                                    <BiSolidCarMechanic className="text-2xl text-teal-500" /> My cars
+                                                </NavLink>
+                                                <NavLink
+                                                    className="py-2 px-4 flex items-center gap-2 hover:bg-emerald-800"
+                                                    to="/my-rentals">
+                                                    <MdOutlineCarRental className="text-3xl -ml-1 text-teal-500" /> My rentals
+                                                </NavLink>
+                                            </> : <NavLink
+                                                className="py-2 px-4 flex items-center gap-2 hover:bg-emerald-800"
+                                                to="/my-bookings">
+                                                <TbBrandBooking className="text-2xl text-teal-500" /> My bookings
+                                            </NavLink>
+                                        }
+
+                                        <button className="py-2 px-4 w-full flex items-center gap-[7px] translate-x-[2px] hover:bg-emerald-800" onClick={
                                             () => {
                                                 logout()
                                                     .then(() => {
 
-                                                        axios.delete("http://localhost:3000/jwt")
+                                                        myAxios.delete("http://localhost:3000/jwt")
                                                             .then(() => {
                                                                 success("logout successfully")
                                                                 navigate("/")
