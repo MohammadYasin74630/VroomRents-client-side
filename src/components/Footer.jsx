@@ -1,7 +1,7 @@
 
 function Footer() {
     return (
-        <div>Footer</div>
+        <div className="z-20">Footer</div>
     )
 }
 

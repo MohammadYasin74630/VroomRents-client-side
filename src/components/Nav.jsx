@@ -32,7 +32,7 @@ function Nav() {
 
     return (
         <>
-            <div className="drawer sticky top-0 shadow-sm shadow-teal-900 bg-teal-900 z-10 md:px-10">
+            <div className="drawer sticky top-0 shadow-sm shadow-teal-900 bg-teal-900 z-50 md:px-10">
                 <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col">
                     {/* Navbar */}
