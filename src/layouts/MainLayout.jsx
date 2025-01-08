@@ -7,7 +7,9 @@ function MainLayout() {
 
     return <>
             <Nav />
+            <div className="flex-1">
             <Outlet />
+            </div>
             <Footer />
             <Toaster />
             <div className="h-[100vh]"></div>

@@ -14,8 +14,8 @@ function MyAccount() {
                     name="my_tabs_2"
                     role="tab"
                     className="tab font-bold h-10" aria-label="LOGIN"
-                    defaultChecked 
-                    ref={inputRef}/>
+                    defaultChecked
+                    ref={inputRef} />
                 <div role="tabpanel" className="tab-content bg-teal-900 border-emerald-800 rounded-box md:p-6">
                     <Login />
                 </div>

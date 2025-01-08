@@ -7,6 +7,11 @@ a.active {
     background-color: #134e4a !important;
 }
 
+*:focus-visible {
+    outline: 2px solid #14b8a6;
+    outline-offset: 2px;
+}
+
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -83,4 +88,3 @@ input {
     background-color: #54E0C7;
     border-color: #54E0C7;
 }
-
