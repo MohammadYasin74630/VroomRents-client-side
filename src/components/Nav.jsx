@@ -32,7 +32,7 @@ function Nav() {
 
     return (
         <>
-            <div className="drawer sticky top-0 shadow-sm shadow-teal-900 bg-teal-900 z-50 md:px-10">
+            <div className="drawer sticky top-0 shadow-sm shadow-emerald-900 bg-teal-900 z-50 md:px-10 rounded-b-lg border-b border-emerald-800">
                 <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col">
                     {/* Navbar */}
@@ -136,7 +136,7 @@ function Nav() {
                                         </button>
                                     </div>
                                 </div> : <NavLink
-                                    className="py-2 px-3 rounded-lg text-sm hover:bg-base-content/10"
+                                    className="max-[284px]:w-min py-2 px-3 rounded-lg text-sm hover:bg-base-content/10"
                                     to="/my-account"> Login & Register
                                 </NavLink>
                             }

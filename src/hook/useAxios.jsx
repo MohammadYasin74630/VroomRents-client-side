@@ -1,8 +1,13 @@
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { authContext } from "../utils/AuthProvider";
 import { useNavigate } from "react-router-dom";
+
+const myAxios = axios.create({
+    baseURL: 'http://localhost:3000',
+    withCredentials: true
+});
 
 function useAxios() {
 
@@ -11,38 +16,37 @@ function useAxios() {
     const navigate = useNavigate()
     const showError = (msg) => toast.error(msg, { position: "top-right" });
 
-    const myAxios = axios.create({
-        baseURL: 'http://localhost:3000',
-        withCredentials: true
-    });
+    useEffect(
+        () => {
+            myAxios.interceptors.request.use((config) => {
 
-    myAxios.interceptors.request.use((config) => {
-        
-        // Ignore withCredentials for external URLs
-        if (config.url.startsWith("http://api.imgbb.com") || config.url.startsWith("https://api.imgbb.com")) {
-            config.withCredentials = false;
-        }
-        return config;
-    });
+                // Ignore withCredentials for external URLs
+                if (config.url.startsWith("http://api.imgbb.com") || config.url.startsWith("https://api.imgbb.com")) {
+                    config.withCredentials = false;
+                }
+                return config;
+            });
 
-    myAxios.interceptors.response.use(function (response) {
-        // Any status code that lie within the range of 2xx cause this function to trigger
-        return response;
-    }, async function (error) {
+            myAxios.interceptors.response.use(function (response) {
+                // Any status code that lie within the range of 2xx cause this function to trigger
+                return response;
+            }, async function (error) {
 
-        if (error.status === 401 || error.status === 403) {
+                if (error.status === 401 || error.status === 403) {
 
-            try {
+                    try {
 
-                await logout()
-                navigate("/my-account")
-                return Promise.reject(new Error("token invalid ! plz login again"))
-            }
-            catch (err) { showError(err.message) }
+                        await logout()
+                        navigate("/my-account")
+                        return Promise.reject(new Error("token invalid ! plz login again"))
+                    }
+                    catch (err) { showError(err.message) }
 
-        }
-        return Promise.reject(error);
-    });
+                }
+                return Promise.reject(error);
+            });
+        }, []
+    )
 
     return (
         myAxios

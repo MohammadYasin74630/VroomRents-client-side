@@ -5,6 +5,7 @@
 a.active {
     color: #14b8a6 !important;
     background-color: #134e4a !important;
+    font-weight: 600;
 }
 
 *:focus-visible {
@@ -87,4 +88,10 @@ input {
 .user-type:has(:checked)::after {
     background-color: #54E0C7;
     border-color: #54E0C7;
+}
+
+
+.test {
+    background-color: red;
+    /* width: 50%; */
 }

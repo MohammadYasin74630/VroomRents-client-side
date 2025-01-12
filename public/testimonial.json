@@ -1,0 +1,82 @@
+[
+    {
+        "image": "https://i.ibb.co.com/S7QqZC7/sophia45.webp",
+        "username": "sophia45",
+        "userType": "Customer",
+        "email": "sophia45@gmail.com",
+        "rating": 5,
+        "testimonial": "I wanted to surprise my partner with a weekend getaway, and this car rental service made it super easy! \n We rented a luxurious convertible, and cruising down the coast was the highlight of our trip. \n The car owner were so friendly and accommodating. Can't wait for our next adventure!"
+    },
+    {
+        "image": "https://i.ibb.co.com/0D56RwT/jake21.webp",
+        "username": "jake21",
+        "userType": "Customer",
+        "email": "jake21@yahoo.com",
+        "rating": 3,
+        "testimonial": "Honestly, I just needed a decent ride to impress my date. \n The car was fine, not exactly what I expected, but it did the job. \n Could’ve been cleaner and faster check-in, but whatever—she thought it was ‘cool’ so I guess that counts for something."
+    },
+    {
+        "image": "https://i.ibb.co.com/1fdyJyk/linda62.webp",
+        "username": "linda62",
+        "userType": "Customer",
+        "email": "linda62@gmail.com",
+        "rating": 5,
+        "testimonial": "I needed a spacious SUV for a family reunion, and I am so glad I chose this service! \n The car was spotless and very comfortable. It made the long drive enjoyable for everyone. \n The car owner made the pickup so easy, which this Grandma appreciated."
+    },
+    {
+        "image": "https://i.ibb.co.com/1qLmTT5/carlos-maria.webp",
+        "username": "carlos.maria30",
+        "userType": "Customer",
+        "email": "carlos.maria30@hotmail.com",
+        "rating": 5,
+        "testimonial": "We had a wonderful experience renting a family van for our road trip to the mountains! \n The service was exceptional, and the van was perfect for our kids. \n It had all the features we needed, and we made lifelong memories. Definitely recommend this place to families!"
+    },
+    {
+        "image": "https://i.ibb.co.com/pf4sKPc/emma29.webp",
+        "username": "emma29",
+        "userType": "Customer",
+        "email": "emma29@yandex.com",
+        "rating": 4,
+        "testimonial": "My sister and I rented a chic little coupe for a spontaneous weekend trip. \n We enjoyed every moment driving around the city! \n The car was adorable, and the process was smooth. Will be back for our next trip, for sure!"
+    },
+    {
+        "image": "https://i.ibb.co.com/Tbq0L2f/mark34.webp",
+        "username": "mark34",
+        "userType": "Customer",
+        "email": "mark34@aol.com",
+        "rating": 5,
+        "testimonial": "I needed a reliable car for a business trip and opted for a mid-range sedan. \n It was comfortable, and I impressed my clients by arriving in style. \n The customer service was great, and they really took care of everything. Highly satisfied!"
+    },
+    {
+        "image": "https://i.ibb.co.com/YbJcCsM/tisha24.webp",
+        "username": "tisha24",
+        "userType": "Customer",
+        "email": "tisha24@yahoo.com",
+        "rating": 4,
+        "testimonial": "Rented a sporty hatchback for a road trip with friends, and it was a blast! \n The car handled like a dream on the open roads. Check-in and out was a breeze. \n The only bummer was not having a sunroof, but other than that, solid service!"
+    },
+    {
+        "image": "https://i.ibb.co.com/f1Zk8Yp/george70.webp",
+        "username": "george70",
+        "userType": "Customer",
+        "email": "george70@yahoo.com",
+        "rating": 5,
+        "testimonial": "As a retiree, all I wanted was a pleasant drive through the countryside. \n I rented a comfortable sedan, and it was perfect! The staff was considerate, and they ensured I had everything I needed. \n Beautiful experience, highly recommend for a leisurely escape!"
+    },
+    {
+        "image": "https://i.ibb.co.com/0cfynxz/mia19.webp",
+        "username": "mia19",
+        "userType": "Customer",
+        "email": "mia19@stanford.com",
+        "rating": 3,
+        "testimonial": "Rented a cute little car for a weekend party with friends… and wow, it was an adventure!\n  The car was fun, but they charged extra for some mileage; totally didn’t expect that! \n But hey, it was worth the laughs and memories—we had a blast!"
+    },
+    {
+        "image": "https://i.ibb.co.com/J2S8PRj/robert50.webp",
+        "username": "robert50",
+        "userType": "Customer",
+        "email": "robert50@gmail.com",
+        "rating": 5,
+        "testimonial": "I rented a spacious minivan for a weekend camping trip with my kids. \n It was perfect—roomy and outfitted with all the essentials. \n The team was understanding and flexible with my last-minute changes. Overall, a fantastic experience!"
+    }
+]
