@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 function Footer() {
     return (
         <>
-            <footer className="border border-teal-800 bg-teal-900 grid md:grid-flow-col gap-4 text-center items-center justify-around p-4 mt-16 rounded-t-lg z-50">
+            <footer className="border border-teal-800 bg-teal-900 grid md:grid-flow-col gap-4 text-center items-center justify-around p-4 mt-16 rounded-t-md z-40">
 
                 <div className="relative max-sm:w-max mx-auto">
                     <img className="w-20" src={logo} alt="" />

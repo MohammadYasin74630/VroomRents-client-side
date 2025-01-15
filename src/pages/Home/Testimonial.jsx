@@ -16,7 +16,7 @@ function Testimonial() {
             <div className="w-11/12 mx-auto mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 ">
 
                 {
-                    data.data.slice(0, num).map((item, idx) => <div className={`border border-teal-800 space-y-2 bg-teal-900 p-4 rounded-2xl ${num === 4 && idx === 2 ? "lg:hidden xl:block" : idx === 8 ? "lg:hidden" : idx === 9 ? "xl:hidden" : null}`} key={item._id}>
+                    data.data.slice(0, num).map((item, idx) => <div className={`border border-teal-800 space-y-2 bg-teal-900 p-4 rounded-2xl ${num === 4 && idx === 2 ? "lg:hidden xl:block" : idx === 8 ? "lg:hidden" : idx === 9 ? "xl:hidden" : null}`} key={idx}>
 
                         <div className="flex items-center gap-2 mb-4">
                             <img className="w-16 rounded-full" src={item.image} alt="" />

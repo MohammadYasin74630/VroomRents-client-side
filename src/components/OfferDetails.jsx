@@ -46,7 +46,7 @@ function OfferDetails({ item, dialogRef, closeDialog }) {
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
 
                     <button className="text-3xl text-teal-500 absolute -top-3 -right-[3px]  z-10" onClick={closeDialog}>
@@ -55,9 +55,10 @@ function OfferDetails({ item, dialogRef, closeDialog }) {
 
                 </div>
 
+                <Tooltip className="z-50" id="my-tooltip" positionStrategy="fixed" />
+                
             </dialog>
 
-            <Tooltip id="my-tooltip" openOnClick />
         </>
     )
 }

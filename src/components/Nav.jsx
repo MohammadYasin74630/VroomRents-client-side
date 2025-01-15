@@ -32,7 +32,7 @@ function Nav() {
 
     return (
         <>
-            <div className="drawer sticky top-0 shadow-sm shadow-emerald-900 bg-teal-900 z-50 md:px-10 rounded-b-lg border-b border-emerald-800">
+            <div className="drawer sticky top-0 shadow-sm shadow-emerald-900 bg-teal-900 z-50 md:px-10 rounded-b-md border-b border-emerald-800">
                 <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col">
                     {/* Navbar */}
@@ -53,7 +53,7 @@ function Nav() {
                                     </svg>
                                 </label>
                             </div>
-                            <Link className="btn btn-ghost text-xl -ml-1" to="/">VroomRents</Link>
+                            <Link className="btn btn-ghost text-lg lg:text-xl max-lg:-ml-4" to="/">VroomRents</Link>
                         </div>
                         <div className="navbar-center hidden lg:flex">
                             <ul className="menu menu-horizontal px-1">
