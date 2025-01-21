@@ -1,7 +1,7 @@
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { FaCircleArrowRight } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
-import { Form, Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import toast from 'react-hot-toast';
 import { authContext } from "../../utils/AuthProvider";
@@ -65,8 +65,6 @@ function Login() {
 
         if (formAlright) {
 
-            let formObj = {};
-
             setBtnLoading(true)
 
             login(email.value, password.value)
@@ -74,7 +72,7 @@ function Login() {
 
                     setUser(userInfo.user)
 
-                    myAxios.get(`/user/${email.value}`, formObj)
+                    myAxios.get(`/user/${email.value}`)
                         .then(val => {
 
                             setBtnLoading(false)
@@ -125,9 +123,7 @@ function Login() {
                     "lastLoggedIn": userInfo.user.metadata.lastLoginAt
                 }
 
-                myAxios.post("/user", formObj, {
-                    withCredentials: true
-                })
+                myAxios.post("/user", formObj)
                     .then(val => {
                         setGoogleLoading(false)
 
@@ -149,8 +145,8 @@ function Login() {
                     })
                     .catch(err => {
                         setGoogleLoading(false)
-                        // return error(err.message)
-                        return console.log(err)
+                        return error(err.message)
+                        // return console.log(err)
                     })
 
             })
@@ -166,7 +162,7 @@ function Login() {
 
     return (
         <>
-            <Form className="space-y-4 p-2 md:p-4" onSubmit={handleSubmit} noValidate method="post">
+            <form className="space-y-4 p-2 md:p-4" onSubmit={handleSubmit} noValidate>
 
                 <fieldset className="space-y-4 p-2 md:p-4 " disabled={btnLoading || googleLoading}>
 
@@ -234,7 +230,7 @@ function Login() {
                 </fieldset>
 
 
-            </Form>
+            </form>
         </>
     )
 }

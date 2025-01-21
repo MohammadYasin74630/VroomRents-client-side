@@ -89,3 +89,54 @@ input {
     background-color: #54E0C7;
     border-color: #54E0C7;
 }
+
+.thumbnail .keen-slider__slide {
+    cursor: pointer;
+}
+
+.thumbnail .keen-slider__slide.active {
+    border: 1px dashed #14b8a6;
+}
+
+.react-tabs__tab-list {
+    border-bottom: #0d9488 !important;
+    margin-bottom: 5px !important;
+}
+
+.react-tabs__tab {
+    /* padding: 6px !important; */
+    border-radius: 5px !important;
+}
+
+.react-tabs__tab--selected {
+    background-color: #134e4a !important;
+    color: white !important;
+    border: 1px solid #115e59 !important;
+    /* border-color: #134e4a !important; */
+    font-weight: 500;
+}
+
+.react-tabs__tab--selected::after {
+    background-color: transparent !important;
+}
+
+.react-tabs__tab-panel {
+    background-color: #134e4a;
+    /* border: 1px solid #115e59 !important; */
+    border-radius: 5px;
+    padding: 16px;
+}
+
+@media (min-width: 1024px) {
+
+    .react-tabs__tab-panel {
+        max-height: 64vmin;
+        overflow: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #065f46 #022c22;
+    }
+}
+
+.react-datepicker-popper {
+    z-index: 50 !important;
+}

@@ -37,7 +37,7 @@ function useAxios() {
                     try {
 
                         await logout()
-                        navigate("/my-account")
+                        navigate("/my-account", { replace: true })
                         return Promise.reject(new Error("token invalid ! plz login again"))
                     }
                     catch (err) { showError(err.message) }

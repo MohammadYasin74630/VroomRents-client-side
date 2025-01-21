@@ -2,6 +2,8 @@ import axios from "axios"
 import ErrorPage from "../pages/Error-404/ErrorPage"
 import Home from "../pages/Home/Home"
 import AvailableCars from "../pages/AvailableCars/AvailableCars"
+import CarDetails from "../pages/CarDetails/CarDetails"
+import PrivateRoute from "../pages/PrivateRoute/PrivateRoute"
 
 
 const mainRoutes = [
@@ -32,6 +34,7 @@ const mainRoutes = [
             const brand = url.searchParams.get('brand');
             const model = url.searchParams.get('model');
             const location = url.searchParams.get('location');
+            const dealer = url.searchParams.get('dealer');
 
             if (brand) {
 
@@ -81,6 +84,22 @@ const mainRoutes = [
                 );
                 return { cars }
             }
+            else if (dealer) {
+
+                let cars = axios.get(
+                    `http://localhost:3000/available-cars`,
+                    {
+                        params: {
+                            dealer: dealer,
+                            date: date,
+                            price: price,
+                            limit: parseInt(limit),
+                            page: parseInt(page)
+                        }
+                    }
+                );
+                return { cars }
+            }
 
             let cars = axios.get(
                 `http://localhost:3000/available-cars`,
@@ -96,6 +115,10 @@ const mainRoutes = [
 
             return { cars }
         }
+    },
+    {
+        path: "/car-details/:id",
+        element: <PrivateRoute> <CarDetails /> </PrivateRoute>,
     },
     {
         path: '*',

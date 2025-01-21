@@ -52,7 +52,7 @@ function SpecialOffers() {
                         </div>
 
                         <div className="flex items-center justify-between gap-[2px] mt-5 text-sm font-semibold text-nowrap">
-                            <Link className="bg-teal-600 px-3 py-1 rounded-2xl focus:text-emerald-400 text-center">Book Now</Link>
+                            <Link className="bg-teal-600 px-3 py-1 rounded-2xl focus:text-emerald-400 text-center" to={`/car-details/${item.discountedCarId}`}>Book Now</Link>
                             <button className="bg-teal-600 px-3 py-1 rounded-2xl text-center" onClick={() => showDialog(item)}>Offer Detail</button>
                         </div>
 

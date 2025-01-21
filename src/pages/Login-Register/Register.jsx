@@ -234,7 +234,7 @@ function Register({ inputRef }) {
 
     return (
         <>
-            <form onSubmit={handleSubmit} noValidate method="post">
+            <form onSubmit={handleSubmit} noValidate>
 
                 <fieldset className="space-y-4 p-2 md:p-4 " disabled={btnLoading || googleLoading}>
                     <p className="flex items-center justify-center gap-2 text-3xl font-extrabold pb-4 text-center">Create an Account</p>

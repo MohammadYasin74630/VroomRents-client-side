@@ -73,7 +73,7 @@ function Nav() {
                                     <div className="text-white absolute top-14 right-0 rounded-xl border border-emerald-950 min-w-52 max-w-96 text-wrap overflow-hidden group-focus-within:visible invisible bg-emerald-900" tabIndex={0}>
 
                                         <div className="flex items-center gap-2 py-3 px-4 -mb-4">
-                                            <div className="bg-emerald-800 text-white w-12 h-12 rounded-full inline-flex items-center justify-center overflow-hidden">
+                                            <div className="bg-teal-500 text-white w-12 h-12 rounded-full inline-flex items-center justify-center overflow-hidden">
 
                                                 {
                                                     user?.photoURL ? <img className="h-full w-full object-cover" src={user?.photoURL} alt="" /> : <span>{user?.displayName?.[0].toUpperCase() || "A"}</span>
@@ -87,7 +87,7 @@ function Nav() {
                                             </div>
                                         </div>
 
-                                        <div className="divider before:bg-teal-900 after:bg-teal-900 "></div>
+                                        <div className="divider before:bg-teal-500/30 after:bg-teal-500/30 mt-2"></div>
 
                                         <NavLink
                                             className="pt-3 pb-2 px-4 flex items-center gap-2 hover:bg-emerald-800 -mt-6"
@@ -98,7 +98,7 @@ function Nav() {
                                             Cookies.get("role") === "vendor" ? <>
                                                 <NavLink
                                                     className="py-2 px-4 flex items-center gap-2 hover:bg-emerald-800"
-                                                    to="/add-cars">
+                                                    to="/add-car">
                                                     <IoCarSportOutline className="text-2xl text-teal-500" /> Add cars
                                                 </NavLink>
                                                 <NavLink

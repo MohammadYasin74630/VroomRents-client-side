@@ -11,7 +11,7 @@ function RecentListings() {
             <h2 className="font-bold text-teal-500 text-center mt-16">Recent Listings</h2>
             <p className="text-md sm:text-3xl md:text-4xl font-extrabold text-center my-3 px-1">Explore Our Recently Added Car Rentals</p>
 
-            <div className={`w-11/12 mx-auto mt-6 ${data.data.length !== 0 ? "grid" : null} grid-cols-1 min-[480px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5  gap-4`}>
+            <div className={`w-11/12 mx-auto mt-6 ${data.data.length !== 0 ? "grid" : null} grid-cols-1 min-[480px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4`}>
 
                 {
                     data.data.map((item, idx) => <div key={item._id} className={`border border-teal-800 bg-teal-900 p-3 sm:p-4 rounded-2xl ${idx + 1 === 9 ? "lg:hidden 2xl:block" : idx + 1 === 10 ? "min-[770px]:hidden 2xl:block" : null}`}>
@@ -21,7 +21,7 @@ function RecentListings() {
                         </div>
 
                         <div className="flex items-center justify-between mt-3 text-sm">
-                            <Link className="text-lg font-bold focus:text-emerald-400" to="/car/:id">{item.model}</Link>
+                            <Link className="text-lg font-bold focus:text-emerald-400" to={`/car-details/${item._id}`}>{item.model}</Link>
                             <p className="text-xs font-medium bg-teal-600 px-3 rounded-full py-[2px]">${item.dailyPrice}/<span className="text-xs">Day</span></p>
                         </div>
 

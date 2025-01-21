@@ -55,7 +55,7 @@ function OfferDetails({ item, dialogRef, closeDialog }) {
 
                 </div>
 
-                <Tooltip className="z-50" id="my-tooltip" positionStrategy="fixed" />
+                <Tooltip id="my-tooltip" positionStrategy="fixed" openOnClick/>
                 
             </dialog>
 

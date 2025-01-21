@@ -20,8 +20,8 @@ function PrivateRoute({ children }) {
     if (user === null) {
         return <>
             <p className="invisible">no data</p>
-            <div className="max-w-96 w-11/12 md:w-full bg-emerald-900/50 border border-teal-900 rounded-xl absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 p-4 space-y-3 shadow-sm">
-                <MdOutlinePrivacyTip className="text-9xl mx-auto text-teal-500" />
+            <div className="max-w-96 w-11/12 md:w-full bg-emerald-900/50 border border-teal-800 rounded-xl absolute top-[42%] md:top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 p-4 space-y-3 shadow-sm">
+                <MdOutlinePrivacyTip className="text-7xl md:text-8xl mx-auto text-teal-500" />
                 <p className="text-center text-2xl font-bold text-gray-200">PRIVATE ROUTE</p>
                 <p className="text-center text-gray-200">YOU NEED TO LOGIN BEFORE ACCESSING PRIVATE PAGES</p>
 

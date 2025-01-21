@@ -19,7 +19,7 @@ function AvailableCars() {
 
     let [obj, setObj] = useState(
         {
-            type: searchParams.get("brand") ? "brand" : searchParams.get("model") ? "model" : searchParams.get("location") ? "location" : "brand",
+            type: searchParams.get("brand") ? "brand" : searchParams.get("model") ? "model" : searchParams.get("location") ? "location" : searchParams.get("dealer") ? "dealer" : "brand",
             limit: parseInt(searchParams.get("limit")) || 10,
             filter: searchParams.get("date") ? "date" : searchParams.get("price") ? "price" : "date",
             sort: searchParams.get("date") || searchParams.get("price") || "asc",
@@ -117,6 +117,7 @@ function AvailableCars() {
         newParams.delete("brand");
         newParams.delete("model");
         newParams.delete("location");
+        newParams.delete("dealer");
         newParams.set("page", 1);
         newParams.set(obj.type, e.target.search.value);
         setSearchParams(newParams)
@@ -141,6 +142,9 @@ function AvailableCars() {
         } else if (searchParams.has("location")) {
             setInputVal(searchParams.get("location"));
             setObj(prevObj => ({ ...prevObj, type: "location" }));
+        } else if (searchParams.has("dealer")) {
+            setInputVal(searchParams.get("dealer"));
+            setObj(prevObj => ({ ...prevObj, type: "dealer" }));
         }
     }, [searchParams]);
 
@@ -169,6 +173,7 @@ function AvailableCars() {
                         <option value="brand">Brand</option>
                         <option value="model">Model</option>
                         <option value="location">Location</option>
+                        <option value="dealer">Dealer Id</option>
                     </select>
 
                 </div>

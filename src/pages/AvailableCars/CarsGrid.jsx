@@ -7,6 +7,10 @@ function CarsGrid() {
 
     const data = useAsyncValue()
 
+    if (data.data.error || data.data.totalItemCount === 0) {
+        return <p className="text-center mt-5">No Data Found !</p>
+    }
+
     return (
         <>
             <div className="w-11/12 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
@@ -35,7 +39,7 @@ function CarsGrid() {
                             <div className="flex items-center justify-between">
                                 <p className="flex gap-1 leading-tight text-xl">$<span className={`text-5xl font-bold -mt-1 ${car.discount ? "text-teal-500" : null}`}>{car.discount ? Math.round(car.dailyPrice * (1 - car.discount / 100)) : car.dailyPrice} <span className="block text-[11px] font-medium ml-5 text-white">Per Day</span></span></p>
 
-                                <Link className="border border-teal-500 py-2 px-4 rounded-sm font-semibold hover:bg-teal-500 active:scale-90 transition-[transform]">RENT IT</Link>
+                                <Link className="border border-teal-500 py-2 px-4 rounded-sm font-semibold hover:bg-teal-500 active:scale-90 transition-[transform]" to={`/car-details/${car._id}`}>RENT IT</Link>
                             </div>
 
                             <hr className="border-teal-500 border-opacity-30" />

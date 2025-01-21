@@ -1,7 +1,7 @@
 import { BiSolidImageAdd } from "react-icons/bi";
 import { FaUserTie } from "react-icons/fa"
 import { RiUser5Fill } from "react-icons/ri"
-import { FaCircleArrowRight } from "react-icons/fa6";
+import { FaCircleArrowRight, FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import toast from 'react-hot-toast';
 import userImg from "../../assets/user.jpeg"
@@ -33,6 +33,7 @@ function UpdateProfile() {
         const image = e.target.image;
         const fileType = image?.files[0]?.type;
         const role = e.target.role;
+        const location = e.target.location;
 
         if (!name.value) {
             error("plz enter a name")
@@ -40,6 +41,13 @@ function UpdateProfile() {
             formAlright = false;
         }
         else { name.parentElement.style.outline = "" }
+
+        if (!location.value) {
+            error("plz enter a location")
+            location.parentElement.style.outline = "2px solid #f87171"
+            formAlright = false;
+        }
+        else { location.parentElement.style.outline = "" }
 
         if (image.value) {
 
@@ -96,7 +104,11 @@ function UpdateProfile() {
                 formObj.name = name.value
             }
 
-            if ((name.value !== user?.displayName) || image.value) {
+            if (location.value !== Cookies.get("location")) {
+                formObj.location = location.value
+            }
+
+            if ((name.value !== user?.displayName) || image.value || location.value !== Cookies.get("location")) {
                 const userObj = {};
 
                 try {
@@ -187,6 +199,12 @@ function UpdateProfile() {
                         <BiSolidImageAdd className="text-2xl scale-110 opacity-70 -ml-[3px]" />
 
                         <input type="file" name="image" className="file-input file-input-ghost w-full -ml-2 focus:text-white" accept="image/*" />
+                    </label>
+
+                    <label className="input input-bordered flex items-center bg-teal-600 focus-within:outline-teal-500/50">
+                        <FaLocationDot className="text-xl scale-110 opacity-70 -ml-[3px] mr-2" />
+
+                        <input type="text" name="location" className="grow w-full placeholder:text-white" placeholder="City Name" spellCheck="false" defaultValue={Cookies.get('location')} />
                     </label>
 
                     <button className="flex items-center justify-center gap-2 bg-teal-500 w-full p-3 rounded-lg font-bold  hover:bg-teal-500/80 btn btn-ghost [--bc:red]" type="submit">
