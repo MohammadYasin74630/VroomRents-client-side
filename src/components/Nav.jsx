@@ -122,11 +122,12 @@ function Nav() {
                                             () => {
                                                 logout()
                                                     .then(() => {
+                                                        
+                                                        navigate("/")
 
-                                                        myAxios.delete("http://localhost:3000/jwt")
+                                                        myAxios.delete("/jwt")
                                                             .then(() => {
                                                                 success("logout successfully")
-                                                                navigate("/")
                                                             })
                                                     })
                                                     .catch(err => error(err))

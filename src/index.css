@@ -2,17 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #065f46 #022c22 !important;
+}
+
+.range::-webkit-slider-thumb {
+    border-radius: 6px;
+    background-color: #065f46;
+}
+
+@media screen and (min-width: 640px) {
+
+    .range::-webkit-slider-thumb {
+        height: 48px;
+    }
+}
+
+body {
+    overflow-y: scroll;
+}
+
+/* .swal2-shown {
+    padding-right: 0px !important;
+    overflow: auto !important;
+} */
+
+body:has(.swal2-shown) {
+    padding-right: 0 !important;
+    overflow: auto !important;
+}
+
 a.active {
     color: #14b8a6 !important;
     background-color: #134e4a !important;
     font-weight: 600;
 }
 
-*:focus-visible {
+/* *:focus-visible {
     outline: 2px solid #14b8a6;
     outline-offset: 2px;
-}
-
+} */
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -132,11 +162,13 @@ input {
     .react-tabs__tab-panel {
         max-height: 64vmin;
         overflow: auto;
-        scrollbar-width: thin;
-        scrollbar-color: #065f46 #022c22;
     }
 }
 
 .react-datepicker-popper {
     z-index: 50 !important;
+}
+
+.react-datepicker__input-container:focus-within input {
+    outline: 2px solid #0d9488 !important;
 }

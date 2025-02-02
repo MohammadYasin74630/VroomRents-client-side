@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import { authContext } from "../../utils/AuthProvider";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import useAxios from "../../hook/useAxios";
+import Cookies from 'js-cookie';
 
 function Login() {
 
@@ -15,7 +16,7 @@ function Login() {
     const [googleLoading, setGoogleLoading] = useState(false)
     const myAxios = useAxios();
     const navigate = useNavigate()
-    const { login, googleLogin, setUser, setRemember } = useContext(authContext)
+    const { login, googleLogin, setUser, setRemember, setRole } = useContext(authContext)
 
     const success = (msg) => toast.success(msg, { position: "top-right" });
     const error = (msg) => toast.error(msg, { position: "top-right" });
@@ -83,6 +84,7 @@ function Login() {
 
                             if (val.data.message) {
 
+                                setRole(Cookies.get('role'))
                                 e.target.reset()
                                 success("login successfull")
                                 return navigate("/")
@@ -138,6 +140,7 @@ function Login() {
                                 localStorage.setItem("remember", true)
                             }
 
+                            setRole(Cookies.get('role'))
                             success("login successfull")
                             e.target.form.reset()
                             return navigate("/")

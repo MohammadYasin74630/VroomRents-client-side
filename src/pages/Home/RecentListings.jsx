@@ -17,7 +17,7 @@ function RecentListings() {
                     data.data.map((item, idx) => <div key={item._id} className={`border border-teal-800 bg-teal-900 p-3 sm:p-4 rounded-2xl ${idx + 1 === 9 ? "lg:hidden 2xl:block" : idx + 1 === 10 ? "min-[770px]:hidden 2xl:block" : null}`}>
                         <div className="relative overflow-hidden rounded-2xl">
                             <img className="w-96 h-40 object-cover object-center rounded-2xl mx-auto hover:scale-110 transition-[transform]" src={item.image} alt="" />
-                            <span className="text-sm bg-emerald-950 px-3 rounded-full font-semibold text-gray-100 absolute top-2 left-2 z-10">{item.availability ? "Available" : "N/A"}</span>
+                            <span className="text-sm bg-teal-950 px-3 rounded-full font-semibold text-gray-100 absolute top-2 left-2 z-10">{item.availability ? "Available" : "N/A"}</span>
                         </div>
 
                         <div className="flex items-center justify-between mt-3 text-sm">

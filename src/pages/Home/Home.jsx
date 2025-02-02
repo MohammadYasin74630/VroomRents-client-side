@@ -25,7 +25,7 @@ function Home() {
                     </div>
                 </div>
 
-                <img className="border border-teal-500 md:w-11/12 mx-auto rounded-3xl brightness-50 [--tw-brightness:_brightness(0.4);]" src={banner} alt="" />
+                <img className="border border-teal-500 md:w-11/12 mx-auto rounded-3xl brightness-50 [--tw-brightness:_brightness(0.4);]" src={banner} alt="" width="1920" height="1034" />
             </div>
 
             <WhyUs />

@@ -175,7 +175,7 @@ function UpdateProfile() {
             <form className="space-y-4 max-w-[600px] mx-4 md:mx-auto my-20 p-4 md:p-10 bg-teal-900 border-emerald-800 rounded-box" onSubmit={handleSubmit} noValidate method="post">
 
                 {/* bypass: 403. That’s an error - Rate-limit exceeded */}
-                <img src={user?.photoURL || userImg} alt="" className="w-40 h-40 rounded-full object-cover mx-auto" referrerPolicy="no-referrer" />
+                <img src={user?.photoURL || userImg} alt="" className="w-40 h-40 rounded-sm object-cover mx-auto" referrerPolicy="no-referrer" />
 
                 <p className="text-center"><span>{user?.email.split('@')[0]}</span><wbr />@<span>{user?.email.split('@')[1]}</span></p>
 

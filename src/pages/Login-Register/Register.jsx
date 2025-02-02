@@ -171,7 +171,7 @@ function Register({ inputRef }) {
                         image.parentElement.style.outline = "2px solid #f87171"
                         error("image upload failed !")
                     } else {
-                        error(err.message)
+                        error(err.message + " (might be CORS issue)")
                     }
                     setBtnLoading(false)
                 })

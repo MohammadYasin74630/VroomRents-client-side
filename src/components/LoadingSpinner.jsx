@@ -1,5 +1,6 @@
 
-function LoadingSpinner(size) {
+function LoadingSpinner({size}) {
+    
     return (
         <span className={`loading loading-spinner loading-${size || "xs"}`}></span>
     )

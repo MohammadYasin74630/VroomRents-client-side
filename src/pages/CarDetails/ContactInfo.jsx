@@ -7,7 +7,7 @@ function ContactInfo({ owner }) {
             <h2 className="text-xl font-bold mb-4">Listed by</h2>
 
             <div className="flex flex-wrap items-start gap-2">
-                <img className="w-16 h-16 object-cover rounded-sm" src={owner.image} alt="" />
+                <img className="w-16 h-16 object-cover rounded-sm" src={owner.image} alt="" referrerPolicy="no-referrer" />
 
                 <div>
                     <h3 className="font-bold capitalize">{owner.name}</h3>

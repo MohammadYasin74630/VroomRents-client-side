@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useAxios from "../../hook/useAxios";
@@ -23,8 +23,9 @@ function BookingForm({ car }) {
     const [dateRange, setDateRange] = useState([null, null]);
     const [startDate, endDate] = dateRange;
     const myAxios = useAxios()
-    const [schedules, setSchedules] = useState()
-    let { current } = useRef([])
+    const [schedules, setSchedules] = useState([])
+    const [dateArr, setDateArr] = useState([])
+    const [phoneNumber, setPhoneNumber] = useState("")
     const [btnLoading, setBtnLoading] = useState(false)
 
     const success = (msg) => toast.success(msg, { position: "top-right" });
@@ -58,17 +59,21 @@ function BookingForm({ car }) {
                         const startDate = new Date(dateToStr(itm.pickupDate))
                         const endDate = new Date(dateToStr(itm.dropoffDate))
 
-                        current.push(
-                            {
-                                start: new Date(startDate.setDate(startDate.getDate() - 1)),
-                                // start: startDate,
-                                end: endDate
-                            }
-                        )
+                        setDateArr(prev => {
+                            prev.push(
+                                {
+                                    start: new Date(startDate.setDate(startDate.getDate() - 1)),
+                                    // start: startDate,
+                                    end: endDate
+                                }
+                            )
+                            return [...prev]
+                        })
+
                     }
                 )
             }
-            return () => current = []
+            return () => setDateArr([])
 
         }, [schedules]
     )
@@ -204,7 +209,7 @@ function BookingForm({ car }) {
             formObj.carId = car._id;
             formObj.pickupLocation = pickLocation.value;
             formObj.dropOffLocation = dropLocation.value;
-            formObj.phone = parseInt(phone.value);
+            formObj.phone = phoneNumber;
             formObj.pickupDate = pickDate;
             formObj.dropoffDate = dropDate;
 
@@ -212,14 +217,13 @@ function BookingForm({ car }) {
 
                 imageUrl: car.images[0],
                 imageWidth: "40%",
-                html: ` <p><b>Booking For:</b> ${diffDays} ${diffDays > 1 ? "days" : "day"}</p>,
+                html: ` <p><b>Booking For:</b> ${diffDays} ${diffDays > 1 ? "days" : "day"}</p> <br/>
                         <p><b>Total Price:</b> ${discountedTotal ? "<del>$" + totalPrice + "</del>" + " $<ins style='text-decoration: none;'>" + discountedTotal + "</ins>" : "$" + totalPrice}</p >`,
                 showCancelButton: true,
                 confirmButtonText: "Book Now",
                 background: "#042f2e",
                 color: "#fff",
                 confirmButtonColor: "#14b8a6",
-                cancelButtonColor: "#d33",
 
             }).then((result) => {
 
@@ -238,13 +242,17 @@ function BookingForm({ car }) {
 
                             if (val.data.acknowledged) {
 
-                                current.push(
-                                    {
-                                        start: new Date(pickDate.setDate(pickDate.getDate() - 1)),
-                                        end: dropDate
-                                    }
-                                )
+                                setDateArr(prev => {
+                                    prev.push(
+                                        {
+                                            start: new Date(pickDate.setDate(pickDate.getDate() - 1)),
+                                            end: dropDate
+                                        }
+                                    )
+                                    return [...prev]
+                                })
                                 e.target.reset()
+                                setPhoneNumber("")
                                 setDateRange([null, null]);
                                 success("Booking successful")
                             }
@@ -271,7 +279,7 @@ function BookingForm({ car }) {
                             <span className="text-sm">Pickup Location</span>
                         </div>
 
-                        <input type="text" placeholder="Enter Location (E.g. Airport)" name="pickLocation" spellCheck="false" className="input disabled:border-transparent w-full bg-teal-600 focus-within:outline-teal-500/50 placeholder:text-white" />
+                        <input type="text" placeholder="Enter Location (E.g. Airport)" name="pickLocation" spellCheck="false" className="input disabled:bg-teal-600 disabled:text-white disabled:border-transparent w-full bg-teal-600 focus-within:outline-teal-500/50 placeholder:text-white" />
 
                     </label>
 
@@ -281,7 +289,7 @@ function BookingForm({ car }) {
                             <span className="text-sm">Drop Off Location</span>
                         </div>
 
-                        <input type="text" placeholder="Enter Location (E.g. Airport)" name="dropLocation" spellCheck="false" className="input disabled:border-transparent w-full bg-teal-600 focus-within:outline-teal-500/50 placeholder:text-white" />
+                        <input type="text" placeholder="Enter Location (E.g. Airport)" name="dropLocation" spellCheck="false" className="input disabled:bg-teal-600 disabled:text-white disabled:border-transparent w-full bg-teal-600 focus-within:outline-teal-500/50 placeholder:text-white" />
 
                     </label>
 
@@ -291,7 +299,7 @@ function BookingForm({ car }) {
                             <span className="text-sm">Phone Number</span>
                         </div>
 
-                        <input type="number" placeholder="Enter Your Phone Number" name="phone" className="input disabled:bg-teal-600 disabled:text-white disabled:border-transparent w-full bg-teal-600 focus-within:outline-teal-500/50 placeholder:text-white" />
+                        <input type="number" placeholder="Enter Your Phone Number" name="phone" min="0" className="input disabled:bg-teal-600 disabled:text-white disabled:border-transparent w-full bg-teal-600 focus-within:outline-teal-500/50 placeholder:text-white" value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} />
 
                     </label>
 
@@ -302,10 +310,10 @@ function BookingForm({ car }) {
                         </div>
 
                         <DatePicker
-                            className="bg-teal-600 disabled:cursor-not-allowed focus-within:outline-teal-500/50 w-full px-4 py-3 rounded-lg placeholder:text-white !z-50" name="rentalPeriod"
+                            className="bg-teal-600 disabled:cursor-not-allowed outline-none w-full px-4 py-3 rounded-lg placeholder:text-white !z-50" name="rentalPeriod"
                             placeholderText="Select Pickup & Drop-Off Dates"
                             minDate={new Date()}
-                            excludeDateIntervals={current}
+                            excludeDateIntervals={dateArr}
                             selectsRange={true}
                             startDate={startDate}
                             endDate={endDate}

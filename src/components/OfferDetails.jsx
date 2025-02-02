@@ -4,16 +4,20 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 
 function OfferDetails({ item, dialogRef, closeDialog }) {
 
+    const backdropClose = e => {
+
+        if (e.currentTarget === e.target) closeDialog()
+    }
 
     return (
         <>
-            <dialog className="bg-transparent pt-4 backdrop:bg-emerald-900 backdrop:bg-opacity-50 backdrop:blur-sm z-50 overflow-x-hidden" ref={dialogRef} >
+            <dialog className="bg-transparent pt-4 backdrop:bg-emerald-900 backdrop:bg-opacity-50 backdrop:blur-sm z-50 overflow-x-hidden" ref={dialogRef} onClick={backdropClose}>
 
                 <div className="border border-teal-800 relative text-white bg-emerald-900 rounded-2xl shadow-sm">
 
-                    <img className=" min-[440px]:max-w-96  min-[440px]:max-h-96 object-cover object-center rounded-2xl " src={item?.carImage} alt="" />
+                    <img className=" min-[440px]:max-w-96 min-[440px]:max-h-96 object-cover object-center rounded-2xl " src={item?.carImage} alt="" />
 
-                    <div className="rounded-2xl absolute bottom-0 p-2 min-[310px]:p-4  bg-black bg-opacity-50 w-full h-full flex items-end overflow-hidden">
+                    <div className="rounded-2xl absolute bottom-0 p-2 min-[310px]:p-4 bg-black bg-opacity-50 w-full h-full flex items-end overflow-hidden">
 
                         <div className="space-y-1 min-[354px]:space-y-4 mt-4">
 
@@ -55,7 +59,7 @@ function OfferDetails({ item, dialogRef, closeDialog }) {
 
                 </div>
 
-                <Tooltip id="my-tooltip" positionStrategy="fixed" openOnClick/>
+                <Tooltip id="my-tooltip" className="!bg-teal-500 text-center" positionStrategy="fixed" openOnClick/>
                 
             </dialog>
 

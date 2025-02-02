@@ -11,9 +11,9 @@ const mainRoutes = [
         path: '/',
         element: <Home />,
         loader: () => {
-            let recentCars = axios.get("http://localhost:3000/recent-listings?limit=10")
+            let recentCars = axios.get("https://b10-a11-server-side-beryl.vercel.app/recent-listings?limit=10")
 
-            let carOffers = axios.get("http://localhost:3000/special-offers?limit=10")
+            let carOffers = axios.get("https://b10-a11-server-side-beryl.vercel.app/special-offers?limit=10")
 
             let testimonial = axios.get("/testimonial.json")
 
@@ -36,15 +36,25 @@ const mainRoutes = [
             const location = url.searchParams.get('location');
             const dealer = url.searchParams.get('dealer');
 
+            const filter = {}
+
+            if (url.searchParams.get('date') !== null) {
+                filter.date = date
+            }
+            else if (url.searchParams.get('price') !== null) {
+                filter.price = price
+            } else {
+                filter.price = "asc"
+            }
+
             if (brand) {
 
                 let cars = axios.get(
-                    `http://localhost:3000/available-cars`,
+                    `https://b10-a11-server-side-beryl.vercel.app/available-cars`,
                     {
                         params: {
                             brand: brand,
-                            date: date,
-                            price: price,
+                            ...filter,
                             limit: parseInt(limit),
                             page: parseInt(page)
                         }
@@ -55,12 +65,11 @@ const mainRoutes = [
             else if (model) {
 
                 let cars = axios.get(
-                    `http://localhost:3000/available-cars`,
+                    `https://b10-a11-server-side-beryl.vercel.app/available-cars`,
                     {
                         params: {
                             model: model,
-                            date: date,
-                            price: price,
+                            ...filter,
                             limit: parseInt(limit),
                             page: parseInt(page)
                         }
@@ -71,12 +80,11 @@ const mainRoutes = [
             else if (location) {
 
                 let cars = axios.get(
-                    `http://localhost:3000/available-cars`,
+                    `https://b10-a11-server-side-beryl.vercel.app/available-cars`,
                     {
                         params: {
                             location: location,
-                            date: date,
-                            price: price,
+                            ...filter,
                             limit: parseInt(limit),
                             page: parseInt(page)
                         }
@@ -87,12 +95,11 @@ const mainRoutes = [
             else if (dealer) {
 
                 let cars = axios.get(
-                    `http://localhost:3000/available-cars`,
+                    `https://b10-a11-server-side-beryl.vercel.app/available-cars`,
                     {
                         params: {
                             dealer: dealer,
-                            date: date,
-                            price: price,
+                            ...filter,
                             limit: parseInt(limit),
                             page: parseInt(page)
                         }
@@ -102,11 +109,10 @@ const mainRoutes = [
             }
 
             let cars = axios.get(
-                `http://localhost:3000/available-cars`,
+                `https://b10-a11-server-side-beryl.vercel.app/available-cars`,
                 {
                     params: {
-                        date: date,
-                        price: price,
+                        ...filter,
                         limit: parseInt(limit),
                         page: parseInt(page)
                     }

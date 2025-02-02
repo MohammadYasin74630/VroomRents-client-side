@@ -12,7 +12,7 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 
 function AvailableCars() {
 
-    const [view, setView] = useState("grid")
+    const [view, setView] = useState(localStorage.getItem("layout") || "grid")
     const [inputVal, setInputVal] = useState("")
     const [searchParams, setSearchParams] = useSearchParams()
     const { cars } = useLoaderData();
@@ -21,12 +21,17 @@ function AvailableCars() {
         {
             type: searchParams.get("brand") ? "brand" : searchParams.get("model") ? "model" : searchParams.get("location") ? "location" : searchParams.get("dealer") ? "dealer" : "brand",
             limit: parseInt(searchParams.get("limit")) || 10,
-            filter: searchParams.get("date") ? "date" : searchParams.get("price") ? "price" : "date",
+            filter: searchParams.get("date") ? "date" : searchParams.get("price") ? "price" : "price",
             sort: searchParams.get("date") || searchParams.get("price") || "asc",
             totalPage: null,
-            page: 1
+            page: parseInt(searchParams.get("page")) || 1
         }
     )
+
+    const toggleView = () => {
+        localStorage.setItem("layout", view === "list" ? "grid" : "list")
+        setView(localStorage.getItem("layout"))
+    }
 
 
     const goPrev = () => {
@@ -167,7 +172,7 @@ function AvailableCars() {
 
                 <div className="border border-teal-500 flex rounded-md overflow-hidden bg-teal-500 w-full max-w-[360px] md:max-w-[600px]">
 
-                    <input className="p-3 text-gray-800 bg-gray-100 caret-black font-medium min-w-0 w-full" type="text" id="search" value={inputVal} spellCheck={false} onChange={onValChange} />
+                    <input className="p-3 text-gray-800 bg-gray-100 caret-black font-medium min-w-0 w-full focus-within:outline-none" type="text" id="search" value={inputVal} spellCheck={false} onChange={onValChange} />
 
                     <select className="select bg-teal-500 min-h-full focus:outline-none text-center font-medium max-[250px]:w-12" onChange={onTypeChange} value={obj.type}>
                         <option value="brand">Brand</option>
@@ -191,15 +196,15 @@ function AvailableCars() {
 
                         <div className="inline-flex items-center gap-2">
 
-                            <FaRegMinusSquare className="border border-teal-500 text-4xl p-2 rounded-sm bg-teal-500 active:scale-90 transition-[transform]" onClick={decreaseCount} />
+                            <FaRegMinusSquare className="border border-teal-500 text-4xl p-2 rounded-sm bg-teal-500 active:scale-90 transition-[transform] cursor-pointer" onClick={decreaseCount} />
 
-                            <span className="text-lg select-none" data-tooltip-id="filter-tooltip" data-tooltip-html={`Show ${obj.limit} Items <br/> on Page`}>{obj.limit}</span>
+                            <span className="text-lg select-none cursor-pointer" data-tooltip-id="filter-tooltip" data-tooltip-html={`Show ${obj.limit} Items <br/> on Page`}>{obj.limit}</span>
 
-                            <FaRegPlusSquare className="border border-teal-500 text-4xl p-2 rounded-sm bg-teal-500 active:scale-90 transition-[transform]" onClick={increaseCount} />
+                            <FaRegPlusSquare className="border border-teal-500 text-4xl p-2 rounded-sm bg-teal-500 active:scale-90 transition-[transform] cursor-pointer" onClick={increaseCount} />
 
                         </div>
 
-                        <div onClick={setFilter}
+                        <div className="cursor-pointer" onClick={setFilter}
                             data-tooltip-id="filter-tooltip" data-tooltip-html={`Filtered by ${obj.filter === "date" ? "Date" : "Price"}`}
                         >
                             {
@@ -208,7 +213,7 @@ function AvailableCars() {
 
                         </div>
 
-                        <div onClick={setSorting}
+                        <div className="cursor-pointer" onClick={setSorting}
                             data-tooltip-id="filter-tooltip" data-tooltip-html={`Sorted in ${obj.filter === "asc" ? "Ascending" : "Descending"} Order`}
                         >
                             {
@@ -219,7 +224,7 @@ function AvailableCars() {
 
                     </div>
 
-                    <div onClick={() => setView(view === "list" ? "grid" : "list")}
+                    <div className="cursor-pointer" onClick={toggleView}
                         data-tooltip-id="filter-tooltip" data-tooltip-html={`Show in <br/> ${view === "list" ? "Grid" : "List"} View`}
                     >
 
@@ -264,7 +269,7 @@ function AvailableCars() {
             }
 
 
-            <Tooltip id="filter-tooltip" openOnClick />
+            <Tooltip id="filter-tooltip" className="!bg-teal-500" openOnClick />
         </>
     )
 }
