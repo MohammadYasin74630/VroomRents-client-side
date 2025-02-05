@@ -149,7 +149,6 @@ function Login() {
                     .catch(err => {
                         setGoogleLoading(false)
                         return error(err.message)
-                        // return console.log(err)
                     })
 
             })

@@ -1,4 +1,4 @@
-import { SlCalender } from "react-icons/sl";
+import { FaRegListAlt } from "react-icons/fa";
 import { MdCancelPresentation } from "react-icons/md";
 import { FaAngleDown } from "react-icons/fa6";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 const headings = ["No", "Model", "(P) Location", "(D) Location", "(P) Date", "(D) Date", "Status", "Total", "Action"]
 
-function MyBookings() {
+function MyRentals() {
 
     const detailsRef = useRef()
     const [view, setView] = useState(localStorage.getItem("pageView") || "table")
@@ -66,7 +66,7 @@ function MyBookings() {
     useEffect(
         () => {
 
-            const currentUrl = `/my-bookings?filter=${obj.filter}&limit=${obj.limit}&page=${obj.page}`
+            const currentUrl = `/my-rentals?filter=${obj.filter}&limit=${obj.limit}&page=${obj.page}`
             const prevUrl = url.current;
 
             if (currentUrl !== prevUrl) {
@@ -74,7 +74,7 @@ function MyBookings() {
                 const controller = new AbortController();
 
                 myAxios
-                    .get("/my-bookings",
+                    .get("/my-rentals",
                         {
                             params: {
                                 filter: obj.filter,
@@ -154,7 +154,7 @@ function MyBookings() {
     return (
         <>
 
-            <h2 className="ml-2 mt-10 text-center text-2xl font-bold">My Booking List</h2>
+            <h2 className="ml-2 mt-10 text-center text-2xl font-bold">My Rent List</h2>
 
             <div className="mx-2">
 
@@ -286,10 +286,10 @@ function MyBookings() {
                                                 show[headings[8]] && <td data-label={headings[8]}>
                                                     <div className="inline-flex justify-center items-center align-top gap-2">
                                                         <button 
-                                                        className="text-xl"
-                                                        data-tooltip-id="table-tooltip" data-tooltip-html="change booking schedule"
+                                                        className="text-[21px]"
+                                                        data-tooltip-id="table-tooltip" data-tooltip-html="user details + change status"
                                                         >
-                                                            <SlCalender />
+                                                            <FaRegListAlt />
                                                         </button>
                                                         <button 
                                                         className="text-2xl mt-[2px]"
@@ -329,4 +329,4 @@ function MyBookings() {
     )
 }
 
-export default MyBookings
+export default MyRentals
