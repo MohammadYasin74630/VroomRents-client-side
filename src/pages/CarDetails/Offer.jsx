@@ -1,10 +1,10 @@
 
 function Offer({ offer }) {
 
-    const postedDate = new Date(offer.createdAt);
+    const postedDate = new Date(offer.createdAt || Date.now());
     const pDate = `${postedDate.getFullYear()}-${(postedDate.getMonth() + 1).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}-${(postedDate.getDate()).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}`;
 
-    const validUnitlDate = new Date(offer.validUntil);
+    const validUnitlDate = new Date(offer.validUntil || Date.now());
     const vDate = `${validUnitlDate.getFullYear()}-${(validUnitlDate.getMonth() + 1).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}-${(validUnitlDate.getDate()).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}`;
 
     const note = `Rentals must be ${offer.minRentalDays ? `at least ${offer.minRentalDays} days` : ""} ${offer.minRentalDays && offer.maxRentalDays ? "and" : ""} ${offer.maxRentalDays ? `no more than ${offer.maxRentalDays} days` : ""} to qualify for this discount.`

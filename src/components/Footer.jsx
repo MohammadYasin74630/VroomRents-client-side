@@ -1,4 +1,3 @@
-import logo from "../assets/car logo (3).webp"
 import { FaLinkedin } from "react-icons/fa6";
 import { Link } from 'react-router-dom'
 
@@ -8,7 +7,7 @@ function Footer() {
             <footer className="border border-teal-800 bg-teal-900 grid md:grid-flow-col gap-4 text-center items-center justify-around p-4 mt-16 rounded-t-md z-40">
 
                 <div className="relative max-sm:w-max mx-auto">
-                    <img className="w-20" src={logo} alt="" />
+                    <img className="w-20" src="/car logo (3).webp" alt="" />
                     <p className="absolute -bottom-2 font-semibold">VroomRents</p>
                 </div>
 

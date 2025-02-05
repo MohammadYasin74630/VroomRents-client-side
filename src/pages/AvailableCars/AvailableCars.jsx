@@ -9,6 +9,7 @@ import CarsList from "./CarsList";
 import CarsGrid from "./CarsGrid";
 import { Tooltip } from 'react-tooltip';
 import LoadingSpinner from "../../components/LoadingSpinner";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 function AvailableCars() {
 
@@ -165,6 +166,12 @@ function AvailableCars() {
 
     return (
         <>
+
+            <HelmetProvider>
+                <Helmet>
+                    <title>Vroom Rents | Available Cars</title>
+                </Helmet>
+            </HelmetProvider>
 
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center my-5 lg:my-10 ">Discover Your Perfect Vehicle</h2>
 

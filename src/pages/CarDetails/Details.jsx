@@ -33,7 +33,7 @@ function Details({ car }) {
             </div>
             <div className="flex gap-1">
                 <h3 className="font-semibold">Added:</h3>
-                <p>{new Intl.DateTimeFormat('en-GB').format(new Date(car.createdAt))}</p>
+                <p>{new Intl.DateTimeFormat('en-GB').format(new Date(car.createdAt || Date.now()))}</p>
             </div>
             <h3 className='font-semibold my-1'>Overview:</h3>
             <p className="max-w-[75ch]">{car.description}</p>

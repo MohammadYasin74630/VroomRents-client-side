@@ -1,6 +1,7 @@
 import { useRef } from "react"
 import Login from "./Login"
 import Register from "./Register"
+import { Helmet, HelmetProvider } from "react-helmet-async"
 
 function MyAccount() {
 
@@ -8,6 +9,12 @@ function MyAccount() {
 
     return (
         <>
+            <HelmetProvider>
+                <Helmet>
+                    <title>Vroom Rents | Login/Register</title>
+                </Helmet>
+            </HelmetProvider>
+
             <div role="tablist" className="tabs tabs-lifted max-w-[600px] mx-auto my-10 p-2 md:p-4">
                 <input
                     type="radio"

@@ -8,6 +8,7 @@ import { RiErrorWarningFill } from "react-icons/ri";
 import toast from "react-hot-toast";
 import { Tooltip } from 'react-tooltip';
 import useAxios from "../../hook/useAxios";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 function AddCar() {
 
@@ -116,7 +117,7 @@ function AddCar() {
             myAxios
                 .post("/car", obj)
                 .then(val => {
-                    
+
                     if (val.data?.error) {
                         return error(val.data.error)
                     }
@@ -269,6 +270,12 @@ function AddCar() {
 
     return (
         <>
+            <HelmetProvider>
+                <Helmet>
+                    <title>Vroom Rents | Add car</title>
+                </Helmet>
+            </HelmetProvider>
+
             <div className="max-w-[1000px] mx-auto">
 
                 <div className="ml-2 mt-5 mb-2">

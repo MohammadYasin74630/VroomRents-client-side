@@ -1,17 +1,34 @@
 import { MdInfoOutline } from "react-icons/md";
 import { Tooltip } from 'react-tooltip';
 import { IoCloseCircleOutline } from "react-icons/io5";
+import { motion } from "motion/react"
+import { useState } from "react";
 
 function OfferDetails({ item, dialogRef, closeDialog }) {
+    const [close, setClose] = useState(false)
 
     const backdropClose = e => {
+        if (e.currentTarget === e.target) {
+            setClose(true)
+            setTimeout(() => {
+                closeDialog(setClose)
+            }, 100);
+        }
+    }
 
-        if (e.currentTarget === e.target) closeDialog()
+    const dialogClose = () => {
+        setClose(true)
+        setTimeout(() => {
+            closeDialog(setClose)
+        }, 100);
     }
 
     return (
         <>
-            <dialog className="bg-transparent pt-4 backdrop:bg-emerald-900 backdrop:bg-opacity-50 backdrop:blur-sm z-50 overflow-x-hidden" ref={dialogRef} onClick={backdropClose}>
+            <motion.dialog className="bg-transparent pt-4 backdrop:bg-emerald-900 backdrop:bg-opacity-50 backdrop:blur-sm z-50 overflow-x-hidden" ref={dialogRef} onClick={backdropClose}
+                initial={{ scale: 0 }}
+                whileInView={!close ? { scale: 1 } : { scale: 0 }}
+            >
 
                 <div className="border border-teal-800 relative text-white bg-emerald-900 rounded-2xl shadow-sm">
 
@@ -34,7 +51,7 @@ function OfferDetails({ item, dialogRef, closeDialog }) {
                                 </div>
                                 <div className="leading-tight">
                                     <p className="font-semibold">OFFER EXPIRE DAY</p>
-                                    <p className=" font-medium text-gray-200"> {new Date(item?.validUntil).toDateString()}</p>
+                                    <p className=" font-medium text-gray-200"> {new Date(item?.validUntil || Date.now()).toDateString()}</p>
                                 </div>
                             </div>
 
@@ -53,15 +70,15 @@ function OfferDetails({ item, dialogRef, closeDialog }) {
 
                     </div>
 
-                    <button className="text-3xl text-teal-500 absolute -top-3 -right-[3px]  z-10" onClick={closeDialog}>
+                    <button className="text-3xl text-teal-500 absolute -top-3 -right-[3px]  z-10" onClick={dialogClose}>
                         <IoCloseCircleOutline />
                     </button>
 
                 </div>
 
-                <Tooltip id="my-tooltip" className="!bg-teal-500 text-center" positionStrategy="fixed" openOnClick/>
-                
-            </dialog>
+                <Tooltip id="my-tooltip" className="!bg-teal-500 text-center" positionStrategy="fixed" openOnClick />
+
+            </motion.dialog>
 
         </>
     )

@@ -8,6 +8,7 @@ import Offer from './Offer'
 import ContactInfo from './ContactInfo'
 import BookingForm from './BookingForm'
 import LoadingSpinner from '../../components/LoadingSpinner'
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 function CarDetails() {
 
@@ -28,7 +29,7 @@ function CarDetails() {
                 })
                 .catch(err => {
                     if (err.name === "CanceledError" || err.message === "canceled") {
-                        return 
+                        return
                     } else {
                         setLoading(false);
                         setError(true);
@@ -51,6 +52,12 @@ function CarDetails() {
 
     return (
         <>
+            <HelmetProvider>
+                <Helmet>
+                    <title>Vroom Rents | Car Details</title>
+                </Helmet>
+            </HelmetProvider>
+
             <div className='md:w-11/12 mx-auto lg:grid grid-cols-[3.3fr_1.7fr] max-xl:gap-4'>
                 <div className='overflow-hidden'>
                     <div className='flex items-center justify-between xl:!w-5/6'>

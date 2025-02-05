@@ -10,6 +10,7 @@ import { authContext } from "../../utils/AuthProvider";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import useAxios from "../../hook/useAxios";
 import Cookies from 'js-cookie';
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 function UpdateProfile() {
 
@@ -172,6 +173,12 @@ function UpdateProfile() {
 
     return (
         <>
+            <HelmetProvider>
+                <Helmet>
+                    <title>Vroom Rents | Update Profile</title>
+                </Helmet>
+            </HelmetProvider>
+
             <form className="space-y-4 max-w-[600px] mx-4 md:mx-auto my-20 p-4 md:p-10 bg-teal-900 border-emerald-800 rounded-box" onSubmit={handleSubmit} noValidate method="post">
 
                 {/* bypass: 403. That’s an error - Rate-limit exceeded */}

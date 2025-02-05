@@ -12,8 +12,9 @@ function SpecialOffers() {
         setItem(item)
     }
 
-    const closeDialog = () => {
+    const closeDialog = (setClose) => {
         dialogRef.current.close()
+        setClose(false)
         setItem(null)
     }
 

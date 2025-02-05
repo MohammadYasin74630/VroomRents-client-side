@@ -2,6 +2,7 @@ import { useContext } from "react"
 import { authContext } from "../../utils/AuthProvider"
 import { MdOutlinePrivacyTip } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 function PrivateRoute({ children }) {
 
@@ -9,6 +10,12 @@ function PrivateRoute({ children }) {
 
     if (loading) {
         return <>
+            <HelmetProvider>
+                <Helmet>
+                    <title>Vroom Rents | Private Route</title>
+                </Helmet>
+            </HelmetProvider>
+
             <p className="invisible">no data</p>
             <div className="flex items-end justify-center text-4xl font-bold absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
                 <p>loading</p>

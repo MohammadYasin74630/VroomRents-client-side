@@ -7,6 +7,7 @@ import { Tooltip } from "react-tooltip";
 import "../../components/Table/table.css"
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { Link } from "react-router-dom";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const headings = ["No", "Model", "(P) Location", "(D) Location", "(P) Date", "(D) Date", "Status", "Total", "Action"]
 
@@ -154,6 +155,12 @@ function MyRentals() {
     return (
         <>
 
+            <HelmetProvider>
+                <Helmet>
+                    <title>Vroom Rents | My Rentals</title>
+                </Helmet>
+            </HelmetProvider>
+
             <h2 className="ml-2 mt-10 text-center text-2xl font-bold">My Rent List</h2>
 
             <div className="mx-2">
@@ -262,13 +269,13 @@ function MyRentals() {
 
                                             {
                                                 show[headings[4]] && <td data-label={headings[4]}>
-                                                    <span data-tooltip-id="table-tooltip" data-tooltip-html={new Date(itm.pickupDate).toDateString()}>{new Intl.DateTimeFormat('en-GB').format(new Date(itm.pickupDate))}</span>
+                                                    <span data-tooltip-id="table-tooltip" data-tooltip-html={new Date(itm.pickupDate || Date.now()).toDateString()}>{new Intl.DateTimeFormat('en-GB').format(new Date(itm.pickupDate || Date.now()))}</span>
                                                 </td>
                                             }
 
                                             {
                                                 show[headings[5]] && <td data-label={headings[5]}>
-                                                    <span data-tooltip-id="table-tooltip" data-tooltip-html={new Date(itm.dropoffDate).toDateString()}>{new Intl.DateTimeFormat('en-GB').format(new Date(itm.dropoffDate))}</span>
+                                                    <span data-tooltip-id="table-tooltip" data-tooltip-html={new Date(itm.dropoffDate || Date.now()).toDateString()}>{new Intl.DateTimeFormat('en-GB').format(new Date(itm.dropoffDate || Date.now()))}</span>
                                                 </td>
                                             }
 
@@ -285,17 +292,17 @@ function MyRentals() {
                                             {
                                                 show[headings[8]] && <td data-label={headings[8]}>
                                                     <div className="inline-flex justify-center items-center align-top gap-2">
-                                                        <button 
-                                                        className="text-[21px]"
-                                                        data-tooltip-id="table-tooltip" data-tooltip-html="user details + change status"
+                                                        <button
+                                                            className="text-[21px]"
+                                                            data-tooltip-id="table-tooltip" data-tooltip-html="user details + change status"
                                                         >
                                                             <FaRegListAlt />
                                                         </button>
-                                                        <button 
-                                                        className="text-2xl mt-[2px]"
-                                                        data-tooltip-id="table-tooltip" data-tooltip-html="cancel booking"
+                                                        <button
+                                                            className="text-[25px] mt-[2px]"
+                                                            data-tooltip-id="table-tooltip" data-tooltip-html="cancel booking"
                                                         >
-                                                            <MdCancelPresentation />
+                                                            <MdCancelPresentation className="fill-red-500" />
                                                         </button>
                                                     </div>
                                                 </td>

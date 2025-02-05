@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 import { useContext, useState } from "react";
 import { authContext } from "../../utils/AuthProvider";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 function ForgotPassword() {
 
@@ -52,6 +53,12 @@ function ForgotPassword() {
 
     return (
         <>
+            <HelmetProvider>
+                <Helmet>
+                    <title>Vroom Rents | Forgot Password</title>
+                </Helmet>
+            </HelmetProvider>
+            
             <form className="space-y-4 max-w-[600px] mx-4 md:mx-auto my-20 p-4 md:p-10 bg-teal-900 border-emerald-800 rounded-box" onSubmit={handleSubmit} noValidate method="post">
 
                 <fieldset className="space-y-4 p-2 md:p-4 " disabled={btnLoading}>

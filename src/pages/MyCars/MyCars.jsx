@@ -9,6 +9,7 @@ import { useRef, useState } from "react";
 import Dialog from "../../components/Dialog";
 import OfferForm from "./OfferForm";
 import CarForm from "./CarForm";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 function MyCars() {
 
@@ -21,8 +22,8 @@ function MyCars() {
     const success = (msg) => toast.success(msg, { position: "top-right" });
     const error = (msg) => toast.error(msg, { position: "top-right" });
 
-    const showModal = (itm, content , func, idx) => {
-        setModal(prev => ({...prev, current: content, set: func, id: idx}))
+    const showModal = (itm, content, func, idx) => {
+        setModal(prev => ({ ...prev, current: content, set: func, id: idx }))
         setCar(itm)
         dialogRef.current.showModal()
     }
@@ -113,6 +114,12 @@ function MyCars() {
 
     return (
         <>
+            <HelmetProvider>
+                <Helmet>
+                    <title>Vroom Rents | My Cars</title>
+                </Helmet>
+            </HelmetProvider>
+
             <Dialog dialogRef={dialogRef}>
                 {
                     modal.current === "offerForm" && <OfferForm offer={car} setOffer={setCar} closeModal={closeModal} />
@@ -169,7 +176,7 @@ function MyCars() {
 
                         {
                             show[headings[7]] && <td data-label={headings[7]}>
-                                <span data-tooltip-id="table-tooltip" data-tooltip-html={new Date(itm.createdAt).toDateString()}>{new Intl.DateTimeFormat('en-GB').format(new Date(itm.createdAt))}</span>
+                                <span data-tooltip-id="table-tooltip" data-tooltip-html={new Date(itm.createdAt || Date.now()).toDateString()}>{new Intl.DateTimeFormat('en-GB').format(new Date(itm.createdAt || Date.now()))}</span>
                             </td>
                         }
 

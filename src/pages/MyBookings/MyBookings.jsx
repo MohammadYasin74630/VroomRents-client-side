@@ -7,8 +7,9 @@ import { Tooltip } from "react-tooltip";
 import "../../components/Table/table.css"
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { Link } from "react-router-dom";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
-const headings = ["No", "Model", "(P) Location", "(D) Location", "(P) Date", "(D) Date", "Status", "Total", "Action"]
+const headings = ["No", "Model", "(P) Location", "(D) Location", "(P) Date", "(D) Date", "Booking", "Status", "Total", "Action"]
 
 function MyBookings() {
 
@@ -153,6 +154,11 @@ function MyBookings() {
 
     return (
         <>
+            <HelmetProvider>
+                <Helmet>
+                    <title>Vroom Rents | My Bookings</title>
+                </Helmet>
+            </HelmetProvider>
 
             <h2 className="ml-2 mt-10 text-center text-2xl font-bold">My Booking List</h2>
 
@@ -262,40 +268,46 @@ function MyBookings() {
 
                                             {
                                                 show[headings[4]] && <td data-label={headings[4]}>
-                                                    <span data-tooltip-id="table-tooltip" data-tooltip-html={new Date(itm.pickupDate).toDateString()}>{new Intl.DateTimeFormat('en-GB').format(new Date(itm.pickupDate))}</span>
+                                                    <span data-tooltip-id="table-tooltip" data-tooltip-html={new Date(itm.pickupDate || Date.now()).toDateString()}>{new Intl.DateTimeFormat('en-GB').format(new Date(itm.pickupDate || Date.now()))}</span>
                                                 </td>
                                             }
 
                                             {
                                                 show[headings[5]] && <td data-label={headings[5]}>
-                                                    <span data-tooltip-id="table-tooltip" data-tooltip-html={new Date(itm.dropoffDate).toDateString()}>{new Intl.DateTimeFormat('en-GB').format(new Date(itm.dropoffDate))}</span>
+                                                    <span data-tooltip-id="table-tooltip" data-tooltip-html={new Date(itm.dropoffDate || Date.now()).toDateString()}>{new Intl.DateTimeFormat('en-GB').format(new Date(itm.dropoffDate || Date.now()))}</span>
                                                 </td>
                                             }
 
                                             {
-                                                show[headings[6]] && <td data-label={headings[6]}>{itm.status}</td>
+                                                show[headings[6]] && <td data-label={headings[6]}>
+                                                    <span data-tooltip-id="table-tooltip" data-tooltip-html={new Date(itm.createdAt || Date.now()).toDateString()}>{new Intl.DateTimeFormat('en-GB').format(new Date(itm.createdAt || Date.now()))}</span>
+                                                </td>
                                             }
 
                                             {
-                                                show[headings[7]] && <td data-label={headings[7]}>
+                                                show[headings[7]] && <td data-label={headings[7]}>{itm.status}</td>
+                                            }
+
+                                            {
+                                                show[headings[8]] && <td data-label={headings[8]}>
                                                     ${itm.totalPrice}
                                                 </td>
                                             }
 
                                             {
-                                                show[headings[8]] && <td data-label={headings[8]}>
+                                                show[headings[9]] && <td data-label={headings[9]}>
                                                     <div className="inline-flex justify-center items-center align-top gap-2">
-                                                        <button 
-                                                        className="text-xl"
-                                                        data-tooltip-id="table-tooltip" data-tooltip-html="change booking schedule"
+                                                        <button
+                                                            className="text-xl"
+                                                            data-tooltip-id="table-tooltip" data-tooltip-html="change booking schedule"
                                                         >
-                                                            <SlCalender />
+                                                            <SlCalender className="fill-blue-700" />
                                                         </button>
-                                                        <button 
-                                                        className="text-2xl mt-[2px]"
-                                                        data-tooltip-id="table-tooltip" data-tooltip-html="cancel booking"
+                                                        <button
+                                                            className="text-[25px] mt-[2px]"
+                                                            data-tooltip-id="table-tooltip" data-tooltip-html="cancel booking"
                                                         >
-                                                            <MdCancelPresentation />
+                                                            <MdCancelPresentation className="fill-red-500" />
                                                         </button>
                                                     </div>
                                                 </td>

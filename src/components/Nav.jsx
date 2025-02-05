@@ -6,7 +6,6 @@ import { IoCarSportOutline } from "react-icons/io5";
 import { BiSolidCarMechanic } from "react-icons/bi";
 import { TbBrandBooking } from "react-icons/tb";
 import { MdOutlineCarRental } from "react-icons/md";
-import logo from "../assets/car logo (3).webp"
 import { useContext } from "react";
 import { authContext } from "../utils/AuthProvider";
 import toast from "react-hot-toast";
@@ -149,7 +148,7 @@ function Nav() {
                     <ul className="menu bg-emerald-950 min-h-full w-64 md:w-80 p-4">
                         {/* Sidebar content here */}
                         <p className="text-center text-xl font-bold">VroomRents</p>
-                        <img src={logo} alt="" />
+                        <img src="/car logo (3).webp" alt="" />
                         <p className="text-center">Your Journey, Our Wheels!</p>
 
                         <p className="pl-1 pt-6 pb-3 text-lg font-semibold">Menu List:</p>

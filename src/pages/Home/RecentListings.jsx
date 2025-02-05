@@ -28,7 +28,7 @@ function RecentListings() {
                         <div className="font-semibold text-gray-100 text-sm flex items-center justify-between mt-1">
 
                             <p className="inline-flex items-center gap-1 ">
-                                <CiCalendarDate className="text-lg" /> {Math.round(Math.abs((new Date(item.createdAt) - new Date()) / 86400000))} days ago
+                                <CiCalendarDate className="text-lg" /> {Math.round(Math.abs((new Date(item.createdAt || Date.now()) - new Date()) / 86400000))} days ago
                             </p>
                             <p className="inline-flex items-center gap-1 ">
                                 <MdOutlineBookmarkAdded className="text-lg" /> {item.bookingCount}

@@ -6,14 +6,21 @@ import { Suspense } from "react"
 import LoadingSpinner from "../../components/LoadingSpinner"
 import SpecialOffers from "./SpecialOffers"
 import Testimonial from "./Testimonial"
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 function Home() {
 
     const { recentCars, carOffers, testimonial } = useLoaderData()
 
-
     return (
+
         <>
+            <HelmetProvider>
+                <Helmet>
+                    <title>Vroom Rents | Home</title>
+                </Helmet>
+            </HelmetProvider>
+
             <div className="relative bg-gradient-to-b from-teal-900 to-emerald-950 p-2 md:p-4">
                 <div className="absolute w-11/12 left-1/2 -translate-x-1/2 h-full rounded-3xl flex items-center justify-center z-10 ">
                     <div className="lg:max-w-[80%] xl:max-w-[55%] text-center space-y-2 sm:space-y-3 p-10 md:p-15">
@@ -44,7 +51,7 @@ function Home() {
 
             <Suspense fallback={<p className="text-center mt-5"><LoadingSpinner size="lg" /></p>}>
                 <Await resolve={testimonial} errorElement={<p className="text-center text-red-500 mt-5">fetching testimonial failed !</p>}>
-                    <Testimonial/>
+                    <Testimonial />
                 </Await>
             </Suspense>
 
