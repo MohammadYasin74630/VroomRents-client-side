@@ -2,7 +2,7 @@ import { MdInfoOutline } from "react-icons/md";
 import { Tooltip } from 'react-tooltip';
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { motion } from "motion/react"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function OfferDetails({ item, dialogRef, closeDialog }) {
     const [close, setClose] = useState(false)
@@ -22,6 +22,18 @@ function OfferDetails({ item, dialogRef, closeDialog }) {
             closeDialog(setClose)
         }, 100);
     }
+
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            e.preventDefault()
+            if (e.key === 'Escape' && !close) {
+                dialogClose();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [close]);
 
     return (
         <>

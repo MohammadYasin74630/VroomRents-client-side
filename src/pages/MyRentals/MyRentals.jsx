@@ -360,7 +360,7 @@ function MyRentals() {
                                                     <div className="leading-tight inline-block">
                                                         <span
                                                             className="capitalize line-clamp-1"
-                                                            data-tooltip-id="table-tooltip" data-tooltip-html={`<p>${itm.userData.email}</p><p>No: ${itm.phone}</p>On: ${new Intl.DateTimeFormat('en-GB').format(new Date(itm.createdAt || Date.now()))}`}
+                                                            data-tooltip-id="table-tooltip" data-tooltip-html={`<p class="line-clamp-1">${itm.userData.email.split(/\b/).map((itm) => "<span>"+itm+"<wbr /></span>").join("")}</p><p>No: ${itm.phone}</p>On: ${new Intl.DateTimeFormat('en-GB').format(new Date(itm.createdAt || Date.now()))}`}
                                                         >
                                                             {
                                                                 itm.userData.name.split(/\b/).map(

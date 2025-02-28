@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import Dialog from "../../components/Dialog";
+import BookingForm from "./BookingForm";
 
 const headings = ["No", "Model", "(P) Location", "(D) Location", "(P) Date", "(D) Date", "Booking", "Status", "Total", "Action"]
 
@@ -17,6 +19,7 @@ function MyBookings() {
 
     const [disableBtn, setDisableBtn] = useState({})
     const detailsRef = useRef()
+    const dialogRef = useRef()
     const [view, setView] = useState(localStorage.getItem("pageView") || "table")
     const [show, setShow] = useState(
         JSON.parse(localStorage.getItem("bookingList")) ||
@@ -31,6 +34,14 @@ function MyBookings() {
     const myAxios = useAxios()
     const showSuccess = (msg) => toast.success(msg, { position: "top-right" });
     const showError = (msg) => toast.error(msg, { position: "top-right" });
+
+    const [booking, setBooking] = useState()
+
+    const showModal = (itm, idx) => {
+        setBooking({ ...itm, idx })
+        dialogRef.current.showModal()
+    }
+    const closeModal = () => dialogRef.current.close()
 
     let [obj, setObj] = useState(
         {
@@ -223,6 +234,12 @@ function MyBookings() {
                 </Helmet>
             </HelmetProvider>
 
+            <Dialog dialogRef={dialogRef}>
+                {
+                    booking && <BookingForm key={booking._id} booking={booking} setCars={setCars} closeModal={closeModal} />
+                }
+            </Dialog>
+
             <h2 className="ml-2 mt-10 text-center text-2xl font-bold">My Booking List</h2>
 
             <div className="mx-2">
@@ -363,7 +380,8 @@ function MyBookings() {
                                                         <button
                                                             className={`text-[23px] text-blue-800 ${disableBtn[itm._id] || itm.status === "canceled" || itm.status === "confirmed" || itm.status === "completed" ? "" : "active:scale-90 transition-[scale]"} disabled:opacity-50 ${disableBtn[itm._id] ? "cursor-not-allowed" : ""} `}
                                                             disabled={itm.status === "canceled" || itm.status === "confirmed" || itm.status === "completed"}
-                                                            data-tooltip-id="table-tooltip" data-tooltip-html="TODO: change booking schedule"
+                                                            data-tooltip-id="table-tooltip" data-tooltip-html="Change booking schedule"
+                                                            onClick={() => showModal(itm, idx)}
                                                         >
                                                             <LuCalendarDays />
                                                         </button>
