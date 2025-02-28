@@ -14,6 +14,7 @@ function Table({ endpoint, headings, makeRow, ifNoData }) {
   const detailsRef = useRef()
   const [view, setView] = useState(localStorage.getItem("pageView") || "table")
   const [show, setShow] = useState(
+    JSON.parse(localStorage.getItem("myCarList")) ||
     headings.reduce((acc, cur) => ({ ...acc, [cur]: true }), {})
   )
   const [cars, setCars] = useState([])
@@ -179,8 +180,12 @@ function Table({ endpoint, headings, makeRow, ifNoData }) {
     }, []
   )
 
-  const changeHanlder = e => setShow(prev => ({ ...prev, [e.target.name]: e.target.checked }))
-
+  const changeHanlder = e => setShow(prev => {
+    const showList = { ...prev, [e.target.name]: e.target.checked }
+    const listString = JSON.stringify(showList)
+    localStorage.setItem("myCarList", listString)
+    return showList
+})
   return (
     <>
       <div className="mx-2">

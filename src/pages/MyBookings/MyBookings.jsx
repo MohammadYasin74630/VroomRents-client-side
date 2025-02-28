@@ -1,5 +1,5 @@
-import { SlCalender } from "react-icons/sl";
-import { MdCancelPresentation } from "react-icons/md";
+import { LuCalendarDays } from "react-icons/lu";
+import { TbCalendarCancel } from "react-icons/tb";
 import { FaAngleDown } from "react-icons/fa6";
 import { useCallback, useEffect, useRef, useState } from "react";
 import useAxios from "../../hook/useAxios";
@@ -8,14 +8,18 @@ import "../../components/Table/table.css"
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { Link } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const headings = ["No", "Model", "(P) Location", "(D) Location", "(P) Date", "(D) Date", "Booking", "Status", "Total", "Action"]
 
 function MyBookings() {
 
+    const [disableBtn, setDisableBtn] = useState({})
     const detailsRef = useRef()
     const [view, setView] = useState(localStorage.getItem("pageView") || "table")
     const [show, setShow] = useState(
+        JSON.parse(localStorage.getItem("bookingList")) ||
         headings.reduce((acc, cur) => ({ ...acc, [cur]: true }), {})
     )
     const [cars, setCars] = useState([])
@@ -25,6 +29,8 @@ function MyBookings() {
     const url = useRef("")
     const observer = useRef(null)
     const myAxios = useAxios()
+    const showSuccess = (msg) => toast.success(msg, { position: "top-right" });
+    const showError = (msg) => toast.error(msg, { position: "top-right" });
 
     let [obj, setObj] = useState(
         {
@@ -150,7 +156,64 @@ function MyBookings() {
         }, []
     )
 
-    const changeHanlder = e => setShow(prev => ({ ...prev, [e.target.name]: e.target.checked }))
+    const changeHanlder = e => setShow(prev => {
+        const showList = { ...prev, [e.target.name]: e.target.checked }
+        const listString = JSON.stringify(showList)
+        localStorage.setItem("bookingList", listString)
+        return showList
+    })
+
+    const cancelBooking = (id, idx, model) => {
+
+        Swal.fire({
+            title: `Cancel ${model} booking?`,
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            background: "#042f2e",
+            color: "#fff",
+            confirmButtonColor: "#d33",
+            confirmButtonText: "Yes, cancel it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                setDisableBtn(prev => ({ ...prev, [id]: true }))
+                myAxios
+                    .patch(`/booking/${id}`, { status: "canceled" })
+                    .then(
+                        val => {
+
+                            if (val.data?.acknowledged) {
+                                const arr = [...cars]
+                                arr[idx] = { ...arr[idx], status: "canceled" }
+                                setCars([...arr])
+
+                                showSuccess("Booking canceled successfully")
+                            }
+
+                            delete disableBtn[id]
+                            const btnObj = { ...disableBtn }
+                            setDisableBtn(btnObj)
+
+                            if (val.data?.message) {
+                                showError(val.data.message)
+                            }
+                            if (val.data?.error) {
+                                showError(val.data.error)
+                            }
+                        }
+                    )
+                    .catch(
+                        err => {
+                            showError(err.message)
+                            delete disableBtn[id]
+                            const btnObj = { ...disableBtn }
+                            setDisableBtn(btnObj)
+                        }
+                    )
+            }
+        });
+    }
 
     return (
         <>
@@ -298,16 +361,19 @@ function MyBookings() {
                                                 show[headings[9]] && <td data-label={headings[9]}>
                                                     <div className="inline-flex justify-center items-center align-top gap-2">
                                                         <button
-                                                            className="text-xl"
-                                                            data-tooltip-id="table-tooltip" data-tooltip-html="change booking schedule"
+                                                            className={`text-[23px] text-blue-800 ${disableBtn[itm._id] || itm.status === "canceled" || itm.status === "confirmed" || itm.status === "completed" ? "" : "active:scale-90 transition-[scale]"} disabled:opacity-50 ${disableBtn[itm._id] ? "cursor-not-allowed" : ""} `}
+                                                            disabled={itm.status === "canceled" || itm.status === "confirmed" || itm.status === "completed"}
+                                                            data-tooltip-id="table-tooltip" data-tooltip-html="TODO: change booking schedule"
                                                         >
-                                                            <SlCalender className="fill-blue-700" />
+                                                            <LuCalendarDays />
                                                         </button>
                                                         <button
-                                                            className="text-[25px] mt-[2px]"
-                                                            data-tooltip-id="table-tooltip" data-tooltip-html="cancel booking"
+                                                            className={`text-red-800 text-[25px] ${disableBtn[itm._id] || itm.status === "canceled" || itm.status === "confirmed" || itm.status === "completed" ? "" : "active:scale-90 transition-[scale]"} disabled:opacity-50 ${disableBtn[itm._id] ? "cursor-not-allowed" : ""}`}
+                                                            disabled={disableBtn[itm._id] || itm.status === "canceled" || itm.status === "confirmed" || itm.status === "completed"}
+                                                            onClick={() => cancelBooking(itm._id, idx, itm.carData.model)}
+                                                            data-tooltip-id="table-tooltip" data-tooltip-html={`${disableBtn[itm._id] || itm.status === "canceled" || itm.status === "confirmed" || itm.status === "completed" ? "" : "Cancel"}`}
                                                         >
-                                                            <MdCancelPresentation className="fill-red-500" />
+                                                            <TbCalendarCancel />
                                                         </button>
                                                     </div>
                                                 </td>
@@ -336,7 +402,7 @@ function MyBookings() {
 
             </div>
 
-            <Tooltip id="table-tooltip" className="!bg-teal-700 z-10" openOnClick />
+            <Tooltip id="table-tooltip" className="!bg-teal-700 z-10" />
         </>
     )
 }
