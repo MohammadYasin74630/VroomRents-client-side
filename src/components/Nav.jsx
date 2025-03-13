@@ -24,9 +24,9 @@ function Nav() {
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/available-cars">Available cars</NavLink></li>
-        <li><Link to="#">Testimonials</Link></li>
-        <li><Link to="#">About us</Link></li>
-        <li><Link to="#">Contact us</Link></li>
+        <li><Link className="text-white/70" to="#">Testimonials</Link></li>
+        <li><Link className="text-white/70" to="#">About us</Link></li>
+        <li><Link className="text-white/70" to="#">Contact us</Link></li>
     </>
 
     return (
@@ -94,7 +94,7 @@ function Nav() {
                                             <FaRegUserCircle className="text-2xl text-teal-500" /> Profile
                                         </NavLink>
                                         {
-                                            Cookies.get("role") === "vendor" ? <>
+                                            Cookies.get("role") === "vendor" || user?.email === "binodonprojukti@gmail.com" ? <>
                                                 <NavLink
                                                     className="py-2 px-4 flex items-center gap-2 hover:bg-emerald-800"
                                                     to="/add-car">
@@ -121,7 +121,7 @@ function Nav() {
                                             () => {
                                                 logout()
                                                     .then(() => {
-                                                        
+                                                        Cookies.remove("role")
                                                         navigate("/")
 
                                                         myAxios.delete("/jwt")

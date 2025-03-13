@@ -21,6 +21,28 @@ function Login() {
     const success = (msg) => toast.success(msg, { position: "top-right" });
     const error = (msg) => toast.error(msg, { position: "top-right" });
 
+    const buyerLogin = (e) => {
+        const email = e.target.form.email;
+        const password = e.target.form.password;
+
+        email.value = "mohammadyasin74630@gmail.com";
+        password.value = "Mess@sess";
+
+        email.parentElement.style.outline = ""
+        password.parentElement.style.outline = ""
+    }
+
+    const sellerLogin = (e) => {
+        const email = e.target.form.email;
+        const password = e.target.form.password;
+
+        email.value = "binodonprojukti@gmail.com";
+        password.value = "Mess@sess";
+
+        email.parentElement.style.outline = ""
+        password.parentElement.style.outline = ""
+    }
+
     const handleSubmit = (e) => {
 
         e.preventDefault();
@@ -169,6 +191,16 @@ function Login() {
                 <fieldset className="space-y-4 p-2 md:p-4 " disabled={btnLoading || googleLoading}>
 
                     <p className="flex items-center justify-center gap-2 text-3xl font-extrabold pb-4">Welcome back </p>
+
+                    <button className="flex items-center justify-center gap-2 bg-teal-500/80 w-full p-3 rounded-lg font-bold  hover:bg-teal-500/60 btn btn-ghost [--bc:red]" type="button" onClick={buyerLogin}>
+                        BUYER ACCOUNT
+                    </button>
+
+                    <button className="flex items-center justify-center gap-2 bg-teal-500/80 w-full p-3 rounded-lg font-bold  hover:bg-teal-500/60 btn btn-ghost [--bc:red]" type="button" onClick={sellerLogin}>
+                        SELLER ACCOUNT
+                    </button>
+
+                    <div className="divider text-xs before:bg-teal-500 after:bg-teal-500 ">OR</div>
 
                     <label className="input input-bordered flex items-center gap-[14px] bg-teal-600 focus-within:outline-teal-500/50">
                         <svg

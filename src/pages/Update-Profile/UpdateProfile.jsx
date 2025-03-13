@@ -19,7 +19,12 @@ function UpdateProfile() {
     const myAxios = useAxios();
 
     if (Cookies.get('role') === undefined) {
-        Cookies.set('role', 'customer')
+        if (user?.email === "binodonprojukti@gmail.com") {
+            Cookies.set('role', 'vendor')
+        }
+        else {
+            Cookies.set('role', 'customer')
+        }
     }
 
     const success = (msg) => toast.success(msg, { position: "top-right" });
