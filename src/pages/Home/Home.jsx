@@ -7,6 +7,7 @@ import LoadingSpinner from "../../components/LoadingSpinner"
 import SpecialOffers from "./SpecialOffers"
 import Testimonial from "./Testimonial"
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import Services from "./Services"
 
 function Home() {
 
@@ -35,6 +36,7 @@ function Home() {
                 <img className="border border-teal-500 md:w-11/12 mx-auto rounded-3xl brightness-50 [--tw-brightness:_brightness(0.4);]" src={banner} alt="" width="1920" height="1034" />
             </div>
 
+            <Services />
             <WhyUs />
 
             <Suspense fallback={<p className="text-center mt-5"><LoadingSpinner size="lg" /></p>}>
