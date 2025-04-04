@@ -1,0 +1,266 @@
+[
+    {
+        "image": "https://picsum.photos/320/320.webp?random=1",
+        "username": "alex88",
+        "userType": "Customer",
+        "email": "alex88@gmail.com",
+        "rating": 5,
+        "testimonial": "I decided to rent a sleek convertible for a surprise anniversary trip, and the experience was unforgettable!\nDriving along scenic routes with the wind in my hair made me feel truly free.\nThe service was warm and attentive, ensuring every detail was perfect."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=2",
+        "username": "bethany77",
+        "userType": "Customer",
+        "email": "bethany77@yahoo.com",
+        "rating": 4,
+        "testimonial": "My weekend getaway turned into a magical adventure with their reliable sedan.\nThe car was immaculate, and the staff made the pickup process stress-free.\nIt was a rejuvenating escape that left me smiling all week long."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=3",
+        "username": "chris2020",
+        "userType": "Customer",
+        "email": "chris2020@hotmail.com",
+        "rating": 5,
+        "testimonial": "Renting a luxury SUV for a family vacation was the best decision ever!\nWe enjoyed a smooth drive through countryside roads, and every family member felt pampered.\nThis service turned an ordinary trip into a cherished memory."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=4",
+        "username": "diana55",
+        "userType": "Customer",
+        "email": "diana55@gmail.com",
+        "rating": 5,
+        "testimonial": "I rented a chic coupe for a spontaneous night out and was blown away by the experience.\nThe car’s performance and the elegant design added a spark to my evening.\nTheir customer service is thoughtful and genuine, making me feel like a VIP."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=5",
+        "username": "edward66",
+        "userType": "Customer",
+        "email": "edward66@outlook.com",
+        "rating": 4,
+        "testimonial": "I needed a dependable car for an important business meeting, and this service did not disappoint.\nThe sedan was pristine and comfortable, which boosted my confidence throughout the day.\nThe professionalism of the team truly made a difference."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=6",
+        "username": "fiona33",
+        "userType": "Customer",
+        "email": "fiona33@yahoo.com",
+        "rating": 5,
+        "testimonial": "My solo road trip became an epic journey thanks to their compact and efficient hatchback.\nEvery mile was filled with excitement and stunning views.\nThe friendly support I received made the entire experience even more special."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=7",
+        "username": "gregory21",
+        "userType": "Customer",
+        "email": "gregory21@gmail.com",
+        "rating": 3,
+        "testimonial": "I rented a mid-range sedan for a quick business errand, and while the car was comfortable, it felt a bit dated.\nThe check-in process was efficient, but I expected a few more modern touches.\nStill, it served its purpose without any major hiccups."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=8",
+        "username": "hannah99",
+        "userType": "Customer",
+        "email": "hannah99@gmail.com",
+        "rating": 5,
+        "testimonial": "For our family reunion, we rented a spacious van that was simply perfect.\nThe vehicle was well-maintained, offering ample room for everyone and all our luggage.\nEvery moment of our trip was filled with laughter and warmth, thanks to this incredible service."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=9",
+        "username": "ian44",
+        "userType": "Customer",
+        "email": "ian44@hotmail.com",
+        "rating": 4,
+        "testimonial": "I wanted an adventurous drive and opted for a sporty convertible.\nThe thrill of the open road combined with the excellent handling of the car made it a memorable experience.\nAlthough the car had a minor cosmetic flaw, it didn’t dampen the overall excitement."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=10",
+        "username": "julia77",
+        "userType": "Customer",
+        "email": "julia77@yahoo.com",
+        "rating": 5,
+        "testimonial": "Renting this elegant car for a weekend retreat exceeded all my expectations.\nThe smooth drive and luxurious feel of the interior made me feel pampered throughout the trip.\nI left with a heart full of gratitude and excitement for my next rental."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=11",
+        "username": "kevin32",
+        "userType": "Customer",
+        "email": "kevin32@gmail.com",
+        "rating": 5,
+        "testimonial": "I needed a sturdy and stylish SUV for a rugged mountain trip, and it was exactly what I got.\nThe vehicle handled rough terrain effortlessly while providing a cozy cabin experience.\nEvery aspect of the service felt personalized and genuinely caring."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=12",
+        "username": "lisa88",
+        "userType": "Customer",
+        "email": "lisa88@outlook.com",
+        "rating": 4,
+        "testimonial": "I booked a compact car for a day of exploring the city, and I was delighted with the overall service.\nThe car was clean, modern, and very fuel-efficient, which helped me navigate busy streets easily.\nThe minor delay in pickup was quickly resolved with a smile."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=13",
+        "username": "matthew55",
+        "userType": "Customer",
+        "email": "matthew55@gmail.com",
+        "rating": 5,
+        "testimonial": "Renting a luxury sedan for a high-profile event made me feel both stylish and confident.\nThe car's impeccable condition and the courteous service turned an ordinary day into a remarkable experience.\nEvery detail was carefully handled, reflecting true professionalism."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=14",
+        "username": "nina66",
+        "userType": "Customer",
+        "email": "nina66@yahoo.com",
+        "rating": 5,
+        "testimonial": "I decided to treat myself with a premium sports car for a day of leisure, and it was absolutely thrilling!\nThe powerful performance and elegant design brought a sense of freedom and joy.\nThe personalized attention I received made the day extra special."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=15",
+        "username": "oliver22",
+        "userType": "Customer",
+        "email": "oliver22@gmail.com",
+        "rating": 4,
+        "testimonial": "I rented a modern SUV for a weekend camping trip, and while it was mostly flawless, there were a few minor quirks.\nThe car offered ample space and modern amenities that made the long drive comfortable.\nOverall, the service was efficient and heartfelt, making the adventure memorable."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=16",
+        "username": "paula33",
+        "userType": "Customer",
+        "email": "paula33@hotmail.com",
+        "rating": 5,
+        "testimonial": "My spontaneous decision to rent a convertible for a coastal drive turned into one of my favorite experiences ever!\nEvery twist and turn of the road brought new excitement, and the vehicle was flawless.\nThe team’s attention to detail made me feel truly valued."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=17",
+        "username": "quincy11",
+        "userType": "Customer",
+        "email": "quincy11@gmail.com",
+        "rating": 3,
+        "testimonial": "I opted for a budget-friendly hatchback for a quick errand run. \nThe car was reliable but could use a few modern upgrades.\nDespite this, the ease of rental and friendly service made the experience worthwhile."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=18",
+        "username": "rachel44",
+        "userType": "Customer",
+        "email": "rachel44@yahoo.com",
+        "rating": 5,
+        "testimonial": "Renting a family van for a reunion turned out to be an incredible decision!\nThe spacious interior and impeccable cleanliness ensured everyone traveled in comfort.\nThe care and attention of the staff added a personal touch that I deeply appreciated."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=19",
+        "username": "samuel77",
+        "userType": "Customer",
+        "email": "samuel77@gmail.com",
+        "rating": 4,
+        "testimonial": "I wanted a car that combined style with efficiency, and the compact sedan I rented delivered just that.\nThe ride was smooth and economical, making it perfect for my city escapades.\nAlthough a slight delay in response occurred, the overall service was friendly and accommodating."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=20",
+        "username": "tiffany88",
+        "userType": "Customer",
+        "email": "tiffany88@hotmail.com",
+        "rating": 5,
+        "testimonial": "I rented a luxury convertible for a long-awaited girls’ weekend, and it exceeded every expectation!\nThe car was a masterpiece of comfort and style, turning every drive into a celebration.\nThe attention and care provided by the team made it a truly unforgettable experience."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=21",
+        "username": "ursula99",
+        "userType": "Customer",
+        "email": "ursula99@gmail.com",
+        "rating": 5,
+        "testimonial": "I embarked on a solo adventure with a rented SUV, and the journey was nothing short of exhilarating.\nThe vehicle was robust and incredibly comfortable, which made every mile a joy.\nThe personalized service left me feeling like a cherished guest."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=22",
+        "username": "vincent55",
+        "userType": "Customer",
+        "email": "vincent55@yahoo.com",
+        "rating": 4,
+        "testimonial": "I chose a sporty coupe for a date night, and it added a layer of excitement to our evening.\nThe car’s performance was impressive and the aesthetics were simply stunning.\nAlthough a minor hiccup occurred during check-in, the overall experience was very satisfying."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=23",
+        "username": "wendy22",
+        "userType": "Customer",
+        "email": "wendy22@gmail.com",
+        "rating": 5,
+        "testimonial": "My decision to rent a family-friendly minivan for a cross-country trip turned out to be a blessing!\nEvery detail, from the comfortable seating to the ample storage, was thoughtfully arranged.\nThe service team was empathetic and efficient, ensuring our journey was smooth and joyful."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=24",
+        "username": "xavier33",
+        "userType": "Customer",
+        "email": "xavier33@hotmail.com",
+        "rating": 3,
+        "testimonial": "I rented a car for a short weekend getaway, and while it was functional, it lacked a bit of flair.\nThe vehicle was clean and got me where I needed to go, but the overall experience was just average.\nStill, the friendly service made up for the minor shortcomings."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=25",
+        "username": "yasmin44",
+        "userType": "Customer",
+        "email": "yasmin44@gmail.com",
+        "rating": 5,
+        "testimonial": "Renting a high-end sedan for a significant event made me feel incredibly special.\nThe vehicle was in pristine condition and offered a smooth, luxurious ride.\nEvery interaction with the staff was warm and reassuring, making the day all the more memorable."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=26",
+        "username": "zachary11",
+        "userType": "Customer",
+        "email": "zachary11@yahoo.com",
+        "rating": 4,
+        "testimonial": "I rented a compact car for a spontaneous road trip and was pleasantly surprised by its performance.\nThe experience was both fun and hassle-free, allowing me to focus on the journey.\nThough not without its minor flaws, the overall service left a positive impression."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=27",
+        "username": "amanda77",
+        "userType": "Customer",
+        "email": "amanda77@gmail.com",
+        "rating": 5,
+        "testimonial": "Choosing this car rental service for a much-needed escape was a game changer.\nI rented a convertible that made every twist and turn of the road feel magical.\nThe care and passion of the team shone through in every detail, making it a dream ride."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=28",
+        "username": "bradley88",
+        "userType": "Customer",
+        "email": "bradley88@hotmail.com",
+        "rating": 4,
+        "testimonial": "I opted for a midsize sedan for an important client meeting, and it delivered reliability and style.\nThe vehicle was well-equipped, and the entire rental process was straightforward.\nEven though there was a slight delay in pickup, the overall experience was highly commendable."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=29",
+        "username": "catherine55",
+        "userType": "Customer",
+        "email": "catherine55@yahoo.com",
+        "rating": 5,
+        "testimonial": "My weekend trip turned extraordinary when I rented a luxurious coupe from this service.\nThe elegant design and smooth performance of the car elevated the entire experience.\nEvery aspect of the service exuded warmth and professionalism, making it truly unforgettable."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=30",
+        "username": "daniel66",
+        "userType": "Customer",
+        "email": "daniel66@gmail.com",
+        "rating": 4,
+        "testimonial": "I rented a compact SUV for an impromptu road trip, and it offered a mix of comfort and utility.\nDespite a minor scheduling hiccup, the team handled everything with grace and efficiency.\nThe experience was both refreshing and adventurous."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=31",
+        "username": "elaine22",
+        "userType": "Customer",
+        "email": "elaine22@hotmail.com",
+        "rating": 5,
+        "testimonial": "I needed a car that could handle both city traffic and a weekend countryside escape, and this service delivered beautifully.\nThe vehicle was sparkling clean and extremely comfortable, making every moment enjoyable.\nThe personalized care from the team made me feel exceptionally valued."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=32",
+        "username": "frank77",
+        "userType": "Customer",
+        "email": "frank77@yahoo.com",
+        "rating": 3,
+        "testimonial": "I opted for a budget car for a quick errand run, and while it met the basic needs, it lacked the wow factor.\nThe rental process was smooth, yet the car felt a bit worn out.\nNevertheless, the friendly customer support kept the experience positive."
+    },
+    {
+        "image": "https://picsum.photos/320/320.webp?random=33",
+        "username": "grace33",
+        "userType": "Customer",
+        "email": "grace33@gmail.com",
+        "rating": 5,
+        "testimonial": "I rented a luxurious sedan for a special celebration, and it made me feel like royalty.\nThe car was impeccably maintained and offered a serene, comfortable ride throughout the day.\nEvery detail of the service was handled with such care and passion that it turned the event into a cherished memory."
+    }
+]

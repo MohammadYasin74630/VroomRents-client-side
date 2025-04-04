@@ -192,6 +192,8 @@ function Login() {
 
                     <p className="flex items-center justify-center gap-2 text-3xl font-extrabold pb-4">Welcome back </p>
 
+                    <div className="divider text-xs before:bg-teal-500 after:bg-teal-500 ">TEST ACCOUNT</div>
+
                     <button className="flex items-center justify-center gap-2 bg-teal-500/80 w-full p-3 rounded-lg font-bold  hover:bg-teal-500/60 btn btn-ghost [--bc:red]" type="button" onClick={buyerLogin}>
                         BUYER ACCOUNT
                     </button>

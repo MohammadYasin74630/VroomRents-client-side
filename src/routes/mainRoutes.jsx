@@ -4,6 +4,7 @@ import Home from "../pages/Home/Home"
 import AvailableCars from "../pages/AvailableCars/AvailableCars"
 import CarDetails from "../pages/CarDetails/CarDetails"
 import PrivateRoute from "../pages/PrivateRoute/PrivateRoute"
+import Testimonial from "../pages/Testimonial/Testimonial"
 
 
 const mainRoutes = [
@@ -120,6 +121,16 @@ const mainRoutes = [
             )
 
             return { cars }
+        }
+    },
+    {
+        path: '/testimonials',
+        element: <Testimonial />,
+        loader: () => {
+
+            let testimonial2 = axios.get("/testimonial2.json")
+
+            return ({ testimonial2 })
         }
     },
     {

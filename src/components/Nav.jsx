@@ -24,7 +24,7 @@ function Nav() {
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/available-cars">Available cars</NavLink></li>
-        <li><Link className="text-white/70" to="#">Testimonials</Link></li>
+        <li><NavLink to="/testimonials">Testimonials</NavLink></li>
         <li><Link className="text-white/70" to="#">About us</Link></li>
         <li><Link className="text-white/70" to="#">Contact us</Link></li>
     </>
